@@ -53,7 +53,7 @@ table {
 	border-radius: 10px;
 	padding: 1rem !important;
 }
-table > * > * >* {
+table > * > * > * {
 	padding: 5px 10px;
 	text-align: center;
 }
@@ -136,7 +136,7 @@ a.nostyle:hover {
 	outline: none;
 	margin-left: -30px;
 }
-.fit{
+.fit {
 	width: fit-content !important;
 }
 .row {

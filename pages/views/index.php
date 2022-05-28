@@ -1,7 +1,6 @@
 <?php
 session_start();
 require "../includes/config.php";
-$user = new User();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +27,7 @@ $user = new User();
                 header("location: ./home.php");
             } else if (isset($_SESSION['ADMIN'])) {
             ?>
-                <h2>Welcome , <?php echo $user->getUser(); ?>!</h2>
+                <h2>Admin Panel</h2>
                 <div class="row" style="gap:10px;">
                     <input type="button" value="Browse Shop" onclick="location.href='./home.php';">
                     <input type="button" value="Inventory" onclick="location.href='./inventory.php';">

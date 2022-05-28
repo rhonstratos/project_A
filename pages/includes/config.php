@@ -11,7 +11,7 @@ class SearchUser
         $this->xml->preserveWhiteSpace = true;
         $this->xml->formatOutput = true;
         $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->xml->saveXML();
+        $this->saveXML();
     }
     private function saveXML()
     {
@@ -52,7 +52,7 @@ class SearchUser
         $userNode->appendChild($userUsernameNode);
         $userNode->appendChild($userPasswordNode);
         $save->getElementsByTagName('users')[0]->appendChild($userNode);
-        $save->save($this->path);
+        $this->saveXML();
     }
 }
 class User

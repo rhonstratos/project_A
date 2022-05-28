@@ -11,11 +11,19 @@ class SearchUser
         $this->xml->preserveWhiteSpace = true;
         $this->xml->formatOutput = true;
         $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->xml->save($this->path);
-        $this->xml->load($this->path);
+        $this->xml->saveXML();
+    }
+    private function saveXML()
+    {
+        return $this->xml->save($this->path);
+    }
+    private function loadXML()
+    {
+        return $this->xml->load($this->path);
     }
     public function search()
     {
+        $this->loadXML();
         foreach ($this->xml->getElementsByTagName('user') as $node) {
             $getUsername = $node->getElementsByTagName('username')[0]->nodeValue;
             $getPassword = $node->getElementsByTagName('password')[0]->nodeValue;
@@ -33,6 +41,7 @@ class SearchUser
     }
     public function register()
     {
+        $this->loadXML();
         $save = $this->xml;
         $userTypeNode = $save->createElement('type', 'user');
         $userUsernameNode = $save->createElement('username', $this->username);

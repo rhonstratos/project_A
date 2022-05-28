@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-    <?php include("../includes/head.php") ?>
+    <?php require("../includes/head.php") ?>
     <title>Login</title>
     <style>
         head,

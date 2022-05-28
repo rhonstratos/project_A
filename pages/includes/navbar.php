@@ -1,4 +1,4 @@
-<?php include "config.php";
+<?php require "config.php";
 $user = new User(); ?>
 <nav class="row">
     <div>

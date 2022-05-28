@@ -1,13 +1,13 @@
 <?php
 session_start();
-include "../includes/config.php";
+require "../includes/config.php";
 $user = new User();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php include "../includes/head.php" ?>
+    <?php require "../includes/head.php" ?>
     <title>Home</title>
     <style>
         head,

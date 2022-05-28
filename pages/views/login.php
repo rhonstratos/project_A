@@ -1,50 +1,6 @@
 <?php
 session_start();
-class SearchUser
-{
-    private $path = "../data/users.xml";
-    private $xml;
-    public function __construct()
-    {
-        $this->xml = new DOMDocument("1.0");
-        $this->xml->preserveWhiteSpace = true;
-        $this->xml->formatOutput = true;
-        $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->xml->save($this->path);
-        $this->xml->load($this->path);
-    }
-    public function search($username, $password)
-    {
-        foreach ($this->xml->getElementsByTagName('user') as $node) {
-            $getUsername = $node->getElementsByTagName('username')[0]->nodeValue;
-            $getPassword = $node->getElementsByTagName('password')[0]->nodeValue;
-            if ($getUsername == $username && $getPassword == $password) {
-                $getUserType = $node->getElementsByTagName('type')[0]->nodeValue;
-                if ($getUserType == 'admin') {
-                    return true;
-                } else if ($getUserType == 'user') {
-                    return false;
-                }
-                break;
-            }
-        }
-        return null;
-    }
-    public function register($username, $password)
-    {
-        $save = $this->xml;
-        $userTypeNode = $save->createElement('type', 'user');
-        $userUsernameNode = $save->createElement('username', $username);
-        $userPasswordNode = $save->createElement('password', $password);
-        $userNode = $save->createElement("user");
-
-        $userNode->appendChild($userTypeNode);
-        $userNode->appendChild($userUsernameNode);
-        $userNode->appendChild($userPasswordNode);
-        $save->getElementsByTagName('users')[0]->appendChild($userNode);
-        $save->save($this->path);
-    }
-}
+require_once "../includes/config.php";
 #run below first
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

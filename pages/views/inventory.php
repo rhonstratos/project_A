@@ -1,5 +1,6 @@
 <?php session_start();
-require_once "../includes/config.php"; ?>
+require_once "../includes/config.php"; 
+$inventory = new Inventory();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@ require_once "../includes/config.php"; ?>
 <body>
     <?php require_once "../includes/navbar_inventory.php"; ?>
     <div>
-        <div class="row">
+        <div class="row" style="align-items: flex-start;">
             <div class="fit">
                 <h2>Dark Chocolates</h2>
                 <table>
@@ -24,12 +25,7 @@ require_once "../includes/config.php"; ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>asiudgsad</td>
-                            <td>asdaowu87yd</td>
-                            <td>asasdasdyo</td>
-                            <td><button>View</button></td>
-                        </tr>
+                        <?php $inventory->loadInventory("darkChocolates");?>
                     </tbody>
                 </table>
             </div>
@@ -45,12 +41,7 @@ require_once "../includes/config.php"; ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>asiudgsad</td>
-                            <td>asdaowu87yd</td>
-                            <td>asasdasdyo</td>
-                            <td><button>View</button></td>
-                        </tr>
+                    <?php $inventory->loadInventory("milkChocolates");?>
                     </tbody>
                 </table>
             </div>
@@ -66,12 +57,7 @@ require_once "../includes/config.php"; ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>asiudgsad</td>
-                            <td>asdaowu87yd</td>
-                            <td>asasdasdyo</td>
-                            <td><button>View</button></td>
-                        </tr>
+                    <?php $inventory->loadInventory("whiteChocolates");?>
                     </tbody>
                 </table>
             </div>

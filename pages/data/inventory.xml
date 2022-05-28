@@ -2,29 +2,71 @@
 <chocolates>
     <darkChocolates>
         <item>
-            <name></name>
-            <description></description>
-            <picture></picture>
-            <price></price>
-            <quantity></quantity>
+            <name>item1</name>
+            <description>desc1</description>
+            <picture>pic1</picture>
+            <price>price1</price>
+            <quantity>quan1</quantity>
+        </item>
+        <item>
+            <name>item2</name>
+            <description>desc2</description>
+            <picture>pic2</picture>
+            <price>price2</price>
+            <quantity>quan2</quantity>
+        </item>
+        <item>
+            <name>item3</name>
+            <description>desc3</description>
+            <picture>pic3</picture>
+            <price>price3</price>
+            <quantity>quan3</quantity>
         </item>
     </darkChocolates>
     <milkChocolates>
         <item>
-            <name></name>
-            <description></description>
-            <picture></picture>
-            <price></price>
-            <quantity></quantity>
+            <name>item1</name>
+            <description>desc1</description>
+            <picture>pic1</picture>
+            <price>price1</price>
+            <quantity>quan1</quantity>
+        </item>
+        <item>
+            <name>item2</name>
+            <description>desc2</description>
+            <picture>pic2</picture>
+            <price>price2</price>
+            <quantity>quan2</quantity>
+        </item>
+        <item>
+            <name>item3</name>
+            <description>desc3</description>
+            <picture>pic3</picture>
+            <price>price3</price>
+            <quantity>quan3</quantity>
         </item>
     </milkChocolates>
     <whiteChocolates>
         <item>
-            <name></name>
-            <description></description>
-            <picture></picture>
-            <price></price>
-            <quantity></quantity>
+            <name>item1</name>
+            <description>desc1</description>
+            <picture>pic1</picture>
+            <price>price1</price>
+            <quantity>quan1</quantity>
+        </item>
+        <item>
+            <name>item2</name>
+            <description>desc2</description>
+            <picture>pic2</picture>
+            <price>price2</price>
+            <quantity>quan2</quantity>
+        </item>
+        <item>
+            <name>item3</name>
+            <description>desc3</description>
+            <picture>pic3</picture>
+            <price>price3</price>
+            <quantity>quan3</quantity>
         </item>
     </whiteChocolates>
 </chocolates>

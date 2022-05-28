@@ -11,7 +11,7 @@ $user = new User(); ?>
         </form>
     </div>
     <div class="row-end">
-        <a href="#" class="nav-item nostyle">Checkout Cart</a>
+        <a href="./checkout.php" class="nav-item nostyle">Checkout Cart</a>
         <a href="../includes/logout.php" class="nav-item nostyle">Logout as <?php echo $user->getUser(); ?></a>
     </div>
 </nav>

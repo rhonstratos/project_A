@@ -5,10 +5,10 @@ require_once "../includes/config.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $user = new SearchUser();
+    $user = new SearchUser($username,$password);
     if (isset($_POST['login'])) {
         #if user click login btn
-        $result = $user->search($username, $password);
+        $result = $user->search();
         if (!is_null($result) && $result) {
             $_SESSION['ADMIN'] = 'Admin';
             $_SESSION['LOGGED_IN'] = 'true';

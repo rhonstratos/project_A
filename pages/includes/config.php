@@ -2,9 +2,11 @@
 class SearchUser
 {
     private $path = "../data/users.xml";
-    private $xml;
-    public function __construct()
+    private $xml,$username,$password;
+    public function __construct($username,$password)
     {
+        $this->username = $username;
+        $this->password = $password;
         $this->xml = new DOMDocument("1.0");
         $this->xml->preserveWhiteSpace = true;
         $this->xml->formatOutput = true;
@@ -12,12 +14,12 @@ class SearchUser
         $this->xml->save($this->path);
         $this->xml->load($this->path);
     }
-    public function search($username, $password)
+    public function search()
     {
         foreach ($this->xml->getElementsByTagName('user') as $node) {
             $getUsername = $node->getElementsByTagName('username')[0]->nodeValue;
             $getPassword = $node->getElementsByTagName('password')[0]->nodeValue;
-            if ($getUsername == $username && $getPassword == $password) {
+            if ($getUsername == $this->username && $getPassword == $this->password) {
                 $getUserType = $node->getElementsByTagName('type')[0]->nodeValue;
                 if ($getUserType == 'admin') {
                     return true;
@@ -106,6 +108,39 @@ class Inventory
 }
 class Cart
 {
+    private $path = "../data/cart_items.xml";
+    private $xml;
+    public function __construct()
+    {
+        $this->xml = new DOMDocument("1.0");
+        $this->xml->preserveWhiteSpace = true;
+        $this->xml->formatOutput = true;
+        $this->xml->load($this->path, LIBXML_NOBLANKS);
+        $this->saveXML();
+    }
+    private function saveXML()
+    {
+        return $this->xml->save($this->path);
+    }
+    private function loadXML()
+    {
+        return $this->xml->load($this->path);
+    }
+    public function findCheckout($user)
+    {
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName("cart");
+        foreach ($node as $targetNode)
+            if($targetNode[0]->getElementsByTagName("owner")[0]->nodeValue == $user)
+            {
+                $node = $targetNode[0];
+                break;
+            }
+        return $node;
+    }
+    public function fillCart($user){
+
+    }
 }
 class Purchases
 {

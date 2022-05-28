@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="login.php" method="post" autocomplete="off">
             <h1>Login</h1>
             <div class="row mar-vertical-1">
-                <input class="" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                <input autofocus class="" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
             <div class="row mar-vertical-1">
                 <input class="" type="password" name="password" id="password" placeholder="Password" autocomplete="off">

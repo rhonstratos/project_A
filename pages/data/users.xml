@@ -15,4 +15,9 @@
     <username>rhon</username>
     <password>vreiln</password>
   </user>
+  <user>
+    <type>user</type>
+    <username>vreiln</username>
+    <password>eykha</password>
+  </user>
 </users>

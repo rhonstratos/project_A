@@ -104,16 +104,16 @@ class Inventory
             #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-?>
-            <tr>
-                <td><?php echo $itemName; ?></td>
-                <td><?php echo $itemPrice; ?></td>
-                <td><?php echo $itemQuantity; ?></td>
-                <td><input type="button" value="View" onclick="location.href='#'"></td>
-            </tr>
-<?php
+    ?>
+                <tr>
+                    <td><?php echo $itemName; ?></td>
+                    <td><?php echo $itemPrice; ?></td>
+                    <td><?php echo $itemQuantity; ?></td>
+                    <td><input type="button" value="View" onclick="location.href='#'"></td>
+                </tr>
+    <?php
+            }
         }
-    }
 }
 class Cart
 {

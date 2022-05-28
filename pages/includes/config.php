@@ -118,9 +118,10 @@ class Inventory
 class Cart
 {
     private $path = "../data/cart_items.xml";
-    private $xml;
+    private $xml,$total;
     public function __construct()
     {
+        $this->total = (float) "0";
         $this->xml = new DOMDocument("1.0");
         $this->xml->preserveWhiteSpace = true;
         $this->xml->formatOutput = true;
@@ -135,20 +136,47 @@ class Cart
     {
         return $this->xml->load($this->path);
     }
-    public function findCheckout($user)
+    private function findCheckout($user)
     {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName("cart");
         foreach ($node as $targetNode)
-            if($targetNode[0]->getElementsByTagName("owner")[0]->nodeValue == $user)
+            if($targetNode->getElementsByTagName("owner")[0]->nodeValue == $user)
             {
-                $node = $targetNode[0];
+                return $targetNode;
                 break;
             }
-        return $node;
+        return NULL;
     }
     public function fillCart($user){
-
+        $this->loadXML();
+        $cartNode = $this->findCheckout($user);
+        if(!is_null($cartNode))
+        foreach($cartNode->getElementsByTagName("item") as $item){
+            $name = $item->getElementsByTagName("name")[0]->nodeValue;
+            $price = $item->getElementsByTagName("price")[0]->nodeValue;
+            $quantity = $item->getElementsByTagName("quantity")[0]->nodeValue;
+            $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
+            $this->total = $this->total + (float)$subtotal;
+            ?>
+            <tr>
+                <td><?php echo $name; ?></td>
+                <td><?php echo $price; ?></td>
+                <td><?php echo $quantity; ?></td>
+                <td><?php echo $subtotal; ?></td>
+                <td><input type="button" value="Update" onclick="location.href='#'"></td>
+                <td><input type="button" value="Cancel" onclick="location.href='#'"></td>
+            </tr>
+            <?php
+        }
+        else{
+            ?>
+            <tr><h2>Your cart is empty!</h2></tr>
+            <?php
+        }
+    }
+    public function getTotal(){
+        return number_format($this->total,2);
     }
 }
 class Purchases

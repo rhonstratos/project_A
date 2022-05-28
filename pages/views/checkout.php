@@ -10,11 +10,10 @@ $cart = new Cart() ?>
 </head>
 
 <body>
-    <?php require_once "../includes/navbar_inventory.php"; ?>
+    <?php require_once "../includes/navbar.php"; ?>
     <div class="row" style="align-items: flex-start;">
         <div class="fit">
             <h2>Your Cart</h2>
-            <h3>Total: 000000</h3>
             <table>
                 <thead>
                     <tr>
@@ -22,13 +21,19 @@ $cart = new Cart() ?>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>SubTotal</th>
-                        <th>Action</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $cart->fillCart($_SESSION['USER']); ?>
                 </tbody>
             </table>
+            <div class="pad-vertical-1">
+                <h3>Total: [PHP <?php echo $cart->getTotal(); ?>]</h3>
+                <form action="./checkout.php" method="post">
+                    <button type="submit" name="purchase">Purchase All</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

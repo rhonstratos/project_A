@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else if (isset($_POST['register'])) {
         #if user click register btn
-        $user->register($username, $password);
+        $user->register();
         header("location: ./login.php");
     }
 }

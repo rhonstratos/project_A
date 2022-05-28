@@ -31,12 +31,12 @@ class SearchUser
         }
         return null;
     }
-    public function register($username, $password)
+    public function register()
     {
         $save = $this->xml;
         $userTypeNode = $save->createElement('type', 'user');
-        $userUsernameNode = $save->createElement('username', $username);
-        $userPasswordNode = $save->createElement('password', $password);
+        $userUsernameNode = $save->createElement('username', $this->username);
+        $userPasswordNode = $save->createElement('password', $this->password);
         $userNode = $save->createElement("user");
 
         $userNode->appendChild($userTypeNode);

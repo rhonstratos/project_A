@@ -18,7 +18,7 @@ include "../includes/checkIfLoggedIn.php";
             
         }
         else if (isset($_SESSION['LOGGED_IN'])/*&&isset($_SESSION['USER'])*/){
-            include "./non_admin/browse.php";
+            include "./browse.php";
         }
         else{
             header("location: ./");

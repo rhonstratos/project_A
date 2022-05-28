@@ -15,3 +15,12 @@ class User {
         return $this->admin;
     }
 }
+class Inventory {
+
+}
+class Cart{
+
+}
+class Purchases{
+    
+}

@@ -7,5 +7,8 @@
 </head>
 <body>
     <?php require_once "../includes/navbar_inventory.php"; ?>
+    <div>
+        div 
+    </div>
 </body>
 </html>

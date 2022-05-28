@@ -13,10 +13,6 @@
 	--gap-2: 2rem;
 	--gap-3: 3rem;
 }
-.login-buttons {
-	display: flex !important;
-	justify-content: center;
-}
 html,
 body {
 	padding: 0;
@@ -51,7 +47,26 @@ input {
 	width: 100% !important;
 	height: 22px !important;
 }
+a.nostyle:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+a.nostyle:hover {
+    color: blue;
+    cursor: auto;
+}
 /*Custom CSS*/
+.login-buttons {
+	display: flex !important;
+	justify-content: center;
+}
 .gap-1 {
 	gap: var(--gap-1);
 }

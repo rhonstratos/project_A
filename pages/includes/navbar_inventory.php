@@ -10,8 +10,8 @@
         </form>
     </div>
     <div class="row-end">
-        <a href="#" class="nav-item">Register</a>
-        <a href="./" class="nav-item">Admin Panel</a>
-        <a href="../includes/logout.php" class="nav-item">Logout as Admin</a>
+        <a href="#" class="nav-item nostyle">Register</a>
+        <a href="./" class="nav-item nostyle">Admin Panel</a>
+        <a href="../includes/logout.php" class="nav-item nostyle">Logout as Admin</a>
     </div>
 </nav>

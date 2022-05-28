@@ -1,12 +1,12 @@
 <?php
 session_start();
-require "../includes/config.php";
+require_once "../includes/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require "../includes/head.php" ?>
+    <?php require_once "../includes/head.php" ?>
     <title>Home</title>
     <style>
         head,

@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<store>
-    <item>
-        <name></name>
-        <category></category>
-        <description></description>
-        <price></price>
-        <quantity></quantity>
-    </item>
-</store>
+<chocolates>
+    <darkChocolates>
+        <item>
+            <name></name>
+            <description></description>
+            <picture></picture>
+            <price></price>
+            <quantity></quantity>
+        </item>
+    </darkChocolates>
+    <milkChocolates>
+        <item>
+            <name></name>
+            <description></description>
+            <picture></picture>
+            <price></price>
+            <quantity></quantity>
+        </item>
+    </milkChocolates>
+    <whiteChocolates>
+        <item>
+            <name></name>
+            <description></description>
+            <picture></picture>
+            <price></price>
+            <quantity></quantity>
+        </item>
+    </whiteChocolates>
+</chocolates>

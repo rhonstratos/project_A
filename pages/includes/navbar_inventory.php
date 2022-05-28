@@ -1,4 +1,4 @@
-<?php require_once "config.php";?>
+<?php require_once "config.php"; ?>
 <nav class="row">
     <div>
         <span>Willy Wonka's Chocolate Factory</span>
@@ -10,6 +10,7 @@
         </form>
     </div>
     <div class="row-end">
+        <a href="#" class="nav-item">Register</a>
         <a href="./" class="nav-item">Admin Panel</a>
         <a href="../includes/logout.php" class="nav-item">Logout as Admin</a>
     </div>

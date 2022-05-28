@@ -11,9 +11,6 @@ $user = new User(); ?>
         </form>
     </div>
     <div class="row-end">
-        <?php if (isset($_SESSION['ADMIN'])) { ?>
-            <a href="./inventory.php" class="nav-item">Inventory</a>
-        <?php } ?>
         <a href="#" class="nav-item">Checkout Cart</a>
         <a href="../includes/logout.php" class="nav-item">Logout as <?php echo $user->getUser(); ?></a>
     </div>

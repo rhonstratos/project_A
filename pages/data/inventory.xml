@@ -2,113 +2,71 @@
 <chocolates>
   <darkChocolates>
     <item>
-      <name>item1</name>
-      <description>desc1</description>
-      <picture>pic1</picture>
-      <price>price1</price>
-      <quantity>quan1</quantity>
+      <name>Toblerone</name>
+      <description>Toblerone is a Swiss chocolate bar made with honey and almond nougat.</description>
+      <picture>toblerone_dark.jpg</picture>
+      <price>110.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item2</name>
-      <description>desc2</description>
-      <picture>pic2</picture>
-      <price>price2</price>
-      <quantity>quan2</quantity>
+      <name>KitKat</name>
+      <description>KITKAT 2 Finger is a perfect balance of delicious chocolate and light wafer with an extra crispy, extra creamy experience that is guaranteed to put a smile in your break. KITKAT 2 Finger is made of the finest cocoa with the right portion for a quick snack on-the-go.</description>
+      <picture>kitkat_dark.jpg</picture>
+      <price>155.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item3</name>
-      <description>desc3</description>
-      <picture>pic3</picture>
-      <price>price3</price>
-      <quantity>quan3</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
-    </item>
-    <item>
-      <name>item4</name>
-      <description>desc4</description>
-      <picture>pic4</picture>
-      <price>price4</price>
-      <quantity>quan4</quantity>
+      <name>Hershey’s Kisses</name>
+      <description>The perfect candy for candy buffets, anniversary parties, and weddings has arrived! Packaged in bulk sizing, KISSES Milk Chocolates with Almonds are the perfect addition to any gold spread, offering beautiful Foils and delicious taste.</description>
+      <picture>hersheys_kisses_dark.jpg</picture>
+      <price>115.00</price>
+      <quantity>100</quantity>
     </item>
   </darkChocolates>
   <milkChocolates>
     <item>
-      <name>item1</name>
-      <description>desc1</description>
-      <picture>pic1</picture>
-      <price>price1</price>
-      <quantity>quan1</quantity>
+      <name>Toblerone</name>
+      <description>Toblerone is a Swiss chocolate bar made with honey and almond nougat.</description>
+      <picture>toblerone_milk.jpg</picture>
+      <price>110.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item2</name>
-      <description>desc2</description>
-      <picture>pic2</picture>
-      <price>price2</price>
-      <quantity>quan2</quantity>
+      <name>KitKat</name>
+      <description>KITKAT 2 Finger is a perfect balance of delicious chocolate and light wafer with an extra crispy, extra creamy experience that is guaranteed to put a smile in your break. KITKAT 2 Finger is made of the finest cocoa with the right portion for a quick snack on-the-go.</description>
+      <picture>kitkat_milk.png</picture>
+      <price>155.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item3</name>
-      <description>desc3</description>
-      <picture>pic3</picture>
-      <price>price3</price>
-      <quantity>quan3</quantity>
+      <name>Hershey’s Kisses</name>
+      <description>The perfect candy for candy buffets, anniversary parties, and weddings has arrived! Packaged in bulk sizing, KISSES Milk Chocolates with Almonds are the perfect addition to any gold spread, offering beautiful Foils and delicious taste.</description>
+      <picture>hersheys_kisses_milk.jpg</picture>
+      <price>115.00</price>
+      <quantity>100</quantity>
     </item>
   </milkChocolates>
   <whiteChocolates>
     <item>
-      <name>item1</name>
-      <description>desc1</description>
-      <picture>pic1</picture>
-      <price>price1</price>
-      <quantity>quan1</quantity>
+      <name>Toblerone</name>
+      <description>Toblerone is a Swiss chocolate bar made with honey and almond nougat.</description>
+      <picture>toblerone_white.jpg</picture>
+      <price>110.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item2</name>
-      <description>desc2</description>
-      <picture>pic2</picture>
-      <price>price2</price>
-      <quantity>quan2</quantity>
+      <name>KitKat</name>
+      <description>KITKAT 2 Finger is a perfect balance of delicious chocolate and light wafer with an extra crispy, extra creamy experience that is guaranteed to put a smile in your break. KITKAT 2 Finger is made of the finest cocoa with the right portion for a quick snack on-the-go.</description>
+      <picture>kitkat_white.jpg</picture>
+      <price>155.00</price>
+      <quantity>100</quantity>
     </item>
     <item>
-      <name>item3</name>
-      <description>desc3</description>
-      <picture>pic3</picture>
-      <price>price3</price>
-      <quantity>quan3</quantity>
+      <name>Hershey’s Kisses</name>
+      <description>The perfect candy for candy buffets, anniversary parties, and weddings has arrived! Packaged in bulk sizing, KISSES Milk Chocolates with Almonds are the perfect addition to any gold spread, offering beautiful Foils and delicious taste.</description>
+      <picture>hersheys_kisses_white.jpg</picture>
+      <price>115.00</price>
+      <quantity>100</quantity>
     </item>
   </whiteChocolates>
 </chocolates>

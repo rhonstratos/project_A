@@ -73,6 +73,17 @@ a.nostyle:hover {
 	cursor: auto;
 }
 /*Custom CSS*/
+.card > .body > * {
+	width: 40ch;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.grid {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	gap: 1rem 1rem;
+}
 .dropbtn {
 	background-color: white;
 	padding: 16px;
@@ -84,7 +95,7 @@ a.nostyle:hover {
 	position: relative;
 	display: inline-block;
 }
-.dropdown-content {
+.dropdown-content,.card {
 	display: none;
 	right: 0;
 	position: absolute;

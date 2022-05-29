@@ -2,8 +2,8 @@
 class SearchUser
 {
     private $path = "../data/users.xml";
-    private $xml,$username,$password;
-    public function __construct($username,$password)
+    private $xml, $username, $password;
+    public function __construct($username, $password)
     {
         $this->username = $username;
         $this->password = $password;
@@ -55,6 +55,63 @@ class SearchUser
         $this->saveXML();
     }
 }
+class Shop
+{
+    private $path = "../data/inventory.xml";
+    private $xml;
+    public function __construct()
+    {
+        $this->xml = new DOMDocument("1.0");
+        $this->xml->preserveWhiteSpace = true;
+        $this->xml->formatOutput = true;
+        $this->xml->load($this->path, LIBXML_NOBLANKS);
+        $this->saveXML();
+    }
+    private function saveXML()
+    {
+        return $this->xml->save($this->path);
+    }
+    private function loadXML()
+    {
+        return $this->xml->load($this->path);
+    }
+    public function filterByCategory($category){
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName("item");
+        return "node";
+    }
+    public function search($search){
+        return "node";
+    }
+    public function fillShop($search = NULL,$category = NULL)
+    {
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName("item");
+        foreach ($node as $targetNode) {
+            $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
+            $itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
+            $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $itemPic = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
+            #if(){}
+
+?>
+            <div class="item-list row fit">
+                <div class="card" onmouseover="unhide(event);" onmouseout="setTimeout(()=>{hide(event)},1000);">
+                    <div class="body">
+                        <img src="../assets/<?php echo $itemPic;  ?>" class="item-img" alt="item" width="100" height="200">
+                        <div class="pad-vertical-1">
+                            <span style="display: none;"><?php echo $itemName; ?></span>
+                            <span style="display: none;"><?php echo $itemDesc; ?></span>
+                            <span style="display: none;"><?php echo $itemPrice; ?></span>
+                        </div>
+                        <input value="Add to Cart" type="button" onclick="location.href='#'">
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+    }
+}
 class User
 {
     private $admin;
@@ -104,21 +161,21 @@ class Inventory
             #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-    ?>
-                <tr>
-                    <td><?php echo $itemName; ?></td>
-                    <td><?php echo $itemPrice; ?></td>
-                    <td><?php echo $itemQuantity; ?></td>
-                    <td><input type="button" value="View" onclick="location.href='#'"></td>
-                </tr>
-    <?php
-            }
+        ?>
+            <tr>
+                <td><?php echo $itemName; ?></td>
+                <td><?php echo $itemPrice; ?></td>
+                <td><?php echo $itemQuantity; ?></td>
+                <td><input type="button" value="View" onclick="location.href='#'"></td>
+            </tr>
+        <?php
         }
+    }
 }
 class Cart
 {
     private $path = "../data/cart_items.xml";
-    private $xml,$total;
+    private $xml, $total;
     public function __construct()
     {
         $this->total = (float) "0";
@@ -141,24 +198,24 @@ class Cart
         $this->loadXML();
         $node = $this->xml->getElementsByTagName("cart");
         foreach ($node as $targetNode)
-            if($targetNode->getElementsByTagName("owner")[0]->nodeValue == $user)
-            {
+            if ($targetNode->getElementsByTagName("owner")[0]->nodeValue == $user) {
                 return $targetNode;
                 break;
             }
         return NULL;
     }
-    public function fillCart($user){
+    public function fillCart($user)
+    {
         $this->loadXML();
         $cartNode = $this->findCheckout($user);
-        if(!is_null($cartNode))
-        foreach($cartNode->getElementsByTagName("item") as $item){
-            $name = $item->getElementsByTagName("name")[0]->nodeValue;
-            $price = $item->getElementsByTagName("price")[0]->nodeValue;
-            $quantity = $item->getElementsByTagName("quantity")[0]->nodeValue;
-            $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
-            $this->total = $this->total + (float)$subtotal;
-            ?>
+        if (!is_null($cartNode))
+            foreach ($cartNode->getElementsByTagName("item") as $item) {
+                $name = $item->getElementsByTagName("name")[0]->nodeValue;
+                $price = $item->getElementsByTagName("price")[0]->nodeValue;
+                $quantity = $item->getElementsByTagName("quantity")[0]->nodeValue;
+                $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
+                $this->total = $this->total + (float)$subtotal;
+        ?>
             <tr>
                 <td><?php echo $name; ?></td>
                 <td><?php echo $price; ?></td>
@@ -167,16 +224,19 @@ class Cart
                 <td><input type="button" value="Update" onclick="location.href='#'"></td>
                 <td><input type="button" value="Cancel" onclick="location.href='#'"></td>
             </tr>
-            <?php
-        }
-        else{
-            ?>
-            <tr><h2>Your cart is empty!</h2></tr>
-            <?php
+        <?php
+            }
+        else {
+        ?>
+            <tr>
+                <h2>Your cart is empty!</h2>
+            </tr>
+<?php
         }
     }
-    public function getTotal(){
-        return number_format($this->total,2);
+    public function getTotal()
+    {
+        return number_format($this->total, 2);
     }
 }
 class Purchases

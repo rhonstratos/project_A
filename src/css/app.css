@@ -73,11 +73,17 @@ a.nostyle:hover {
 	cursor: auto;
 }
 /*Custom CSS*/
-.card > .body > * {
-	width: 40ch;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.text-center {
+	text-align: center !important;
+}
+.card > .body {
+	width: 30ch;
+}
+.card > .body > div > span {
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	-webkit-line-clamp: 1 !important;
 }
 .grid {
 	display: grid;
@@ -95,7 +101,8 @@ a.nostyle:hover {
 	position: relative;
 	display: inline-block;
 }
-.dropdown-content,.card {
+.dropdown-content,
+.card {
 	display: none;
 	right: 0;
 	position: absolute;
@@ -148,7 +155,6 @@ a.nostyle:hover {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
-	word-wrap: break-word;
 	background-color: #fff;
 	background-clip: border-box;
 	border: 1px solid rgba(0, 0, 0, 0.125);

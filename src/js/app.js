@@ -1,12 +1,12 @@
 function hide(event) {
     var span = event.target.getElementsByTagName("span");
     for (var element of span){
-        element.style.display = "none";
+        element.style.visibility = "hidden";
     }
 }
 function unhide(event) {
     var span = event.target.getElementsByTagName("span");
     for (var element of span){
-        element.style.display = "block";
+        element.style.visibility = "visible";
     }
 }

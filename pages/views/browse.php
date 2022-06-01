@@ -19,12 +19,12 @@
     </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+            <p>Add item to cart?</p>
+            <input class="fit" type="button" value="Yes">
+            <button class="fit" type="button" onclick="modal.style.display = 'none';">No</button>
         </div>
-
     </div>
 </div>

@@ -1,47 +1,46 @@
 function hide(event) {
     var span = event.target.getElementsByTagName("span");
-    for (var element of span){
+    for (var element of span) {
         element.style.visibility = "hidden";
     }
 }
 function unhide(event) {
     var span = event.target.getElementsByTagName("span");
-    for (var element of span){
+    for (var element of span) {
         element.style.visibility = "visible";
     }
 }
-function resetBrowse(){
-    document.getElementById("browse").innerHTML=""
+function resetBrowse() {
+    document.getElementById("browse").innerHTML = ""
 }
-function fillBrowseByCategory(){
+function fillBrowseByCategory() {
     var category = document.getElementById("category").value
 
     var http = new XMLHttpRequest()
-    http.onreadystatechange = function(){
-        if(http.readyState == 4 && http.status == 200)
-        {
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
             resetBrowse()
             var xmlDocument = http.responseText;
             console.log(JSON.parse(xmlDocument))
             var obj = JSON.parse(xmlDocument)
             var json = obj.items
-            for(items of json)
-            console.log((items.picture))
+            for (items of json)
+                console.log((items.picture))
 
-            for (items of json){
+            for (items of json) {
                 var div = document.createElement("div")
                 div.className = "item-list row fit"
 
                 var div1 = document.createElement("div")
                 div1.className = "card"
                 div1.onmouseover = unhide
-                div1.onmouseout = setTimeout(()=>{hide(event)},1000)
+                div1.onmouseout = setTimeout(() => { hide(event) }, 1000)
 
                 var div2 = document.createElement("div")
                 div2.className = "body"
 
                 var img = document.createElement("img")
-                img.src = "../assets/"+items.picture
+                img.src = "../assets/" + items.picture
                 img.className = "item-img"
                 img.alt = "item"
                 img.width = 100
@@ -51,23 +50,23 @@ function fillBrowseByCategory(){
                 div3.className = "pad-vertical-1"
 
                 var span1 = document.createElement("span")
-                span1.style.visibility="hidden"
+                span1.style.visibility = "hidden"
                 span1.className = "text-center"
                 span1.innerHTML = items.name
 
                 var span2 = document.createElement("span")
-                span2.style.visibility="hidden"
+                span2.style.visibility = "hidden"
                 span2.innerHTML = items.description
 
                 var span3 = document.createElement("span")
-                span3.style.visibility="hidden"
+                span3.style.visibility = "hidden"
                 span3.className = "text-center"
                 span3.innerHTML = items.price
 
                 var input = document.createElement("input")
                 input.value = "Add to Card"
                 input.type = "button"
-                input.onclick = location.href='#'
+                input.onclick = location.href = '#'
 
                 div3.appendChild(span1)
                 div3.appendChild(span2)
@@ -84,6 +83,31 @@ function fillBrowseByCategory(){
             }
         }
     };
-    http.open("GET","../includes/config.php?category="+category,true);
+    http.open("GET", "../includes/config.php?category=" + category, true);
     http.send();
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+function clodeModal() {
+        modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }

@@ -117,7 +117,7 @@ class Shop
 
 ?>
             <div class="item-list row fit">
-                <div class="card" onmouseover="unhide(event);" onmouseout="setTimeout(()=>{hide(event)},1000);">
+                <div class="card" id="<?php echo $itemPic;  ?>" onmouseover="unhide(event);" onmouseout="hide(event);">
                     <div class="body">
                         <img src="../assets/<?php echo $itemPic;  ?>" class="item-img" alt="item" width="100" height="200">
                         <div class="pad-vertical-1">
@@ -125,7 +125,7 @@ class Shop
                             <span style="visibility: hidden;"><?php echo $itemDesc; ?></span>
                             <span style="visibility: hidden;" class="text-center"><?php echo $itemPrice; ?></span>
                         </div>
-                        <input value="Add to Cart" type="button" onclick="location.href='#'">
+                        <button type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -259,6 +259,24 @@ class Cart
     {
         return number_format($this->total, 2);
     }
+    public function addToCart($itemName,$itemPrice,$itemQuantity){
+        $this->loadXML();
+        $cartOwner = $this->findCheckout($_SESSION['USER']);
+        $node = $cartOwner;
+
+        $item = $node->createElement('item');
+        $name = $node->createElement('name',$itemName);
+        $price = $node->createElement('price',(float)$itemPrice);
+        $quantity = $node->createElement('quantity',(float)$itemQuantity);
+        $subTotal = $node->createElement('subtotal', (float)$itemPrice*(float)$itemQuantity);
+        $item->appendChild($name);
+        $item->appendChild($price);
+        $item->appendChild($quantity);
+        $item->appendChild($subTotal);
+        $cartOwner->getElementsByTagName('items')[0]->appendChild($item);
+        $this->saveXML();
+        $this->loadXML();
+    }
 }
 class Purchases
 {
@@ -267,4 +285,9 @@ class Purchases
 if(isset($_GET['category']) && !empty($_GET['category'])){
     $cat = new Shop();
     echo $cat->filterByCategory($_GET['category']);
+}
+
+if(isset($_POST['addToCart'])&& !empty($_POST['itemName'])&& !empty($_POST['itemPrice'])&& !empty($_POST['itemQuantity'])){
+    $cart = new Cart();
+    $cart->addToCart($_POST['itemName'],$_POST['itemPrice'],$_POST['itemQuantity']);
 }

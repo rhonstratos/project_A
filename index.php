@@ -5,5 +5,6 @@ if (phpversion() >= $requirement) {
     header("Location: ./pages/views");
 } else {
     echo 'Current PHP version: ' . phpversion() . ', but ' . $requirement . ' or above is required <br>Please update your (Linux|XAMPP) server using composer<br><br>';
+    echo "if you still wish to continue, click ";?><input type="button" value="here" onclick="location.href='./pages/views'"><?php 
     echo phpinfo();
 }

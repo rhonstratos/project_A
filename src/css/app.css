@@ -76,6 +76,9 @@ a.nostyle:hover {
 .text-center {
 	text-align: center !important;
 }
+.text-start{
+	text-align: start !important;
+}
 .card > .body {
 	width: 30ch;
 }

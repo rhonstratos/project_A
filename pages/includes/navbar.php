@@ -2,7 +2,7 @@
 $user = new User(); ?>
 <nav class="row">
     <div>
-        <span>Willy Wonka's Chocolate Factory</span>
+        <a class="nostyle" style="width:100%" href="./home.php">Willy Wonka's Chocolate Factory</a>
     </div>
     <div>
         <form action="./home.php" method="get" class="row search-form">

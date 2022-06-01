@@ -13,7 +13,7 @@ $user = new User(); ?>
     <div class="row-end">
         <a href="./checkout.php" class="nav-item nostyle">Checkout Cart</a>
         <div class="dropdown fit">
-            <button class="dropbtn" type="button"><?php echo ucwords($user->getUser()); ?></button>
+            <button class="dropbtn" type="button" id="user"><?php echo ucwords($user->getUser()); ?></button>
             <div class="dropdown-content">
                 <a href="../includes/logout.php" class="nostyle" style="text-align: center;">Logout</a>
             </div>

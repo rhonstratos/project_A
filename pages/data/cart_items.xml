@@ -21,6 +21,12 @@
         <quantity>4</quantity>
         <subtotal>800</subtotal>
       </item>
+      <item>
+        <name>Toblerone</name>
+        <price>100</price>
+        <quantity>3</quantity>
+        <subtotal>300</subtotal>
+      </item>
     </items>
     <paid>false</paid>
   </cart>

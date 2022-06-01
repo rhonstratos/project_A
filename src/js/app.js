@@ -117,16 +117,16 @@ function addToCart(){
     let itemName = document.getElementById("itemNameModal").value
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
-    let params = "addToCart=true&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
+    let params = "addToCart=true&&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
     console.log(params)
+    
+    http.open("get", "../includes/config.php?"+params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             document.getElementById("modal2").style.display = "block"
         }
     };
-    http.open("POST", "../includes/config.php", true);
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    http.send(params);
+    http.send();
 }
 
 function closeModal() {

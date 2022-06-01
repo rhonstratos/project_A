@@ -265,13 +265,12 @@ class Cart
     {
         $this->loadXML();
         $cartOwner = $this->findCheckout($_SESSION['USER']);
-        $node = $cartOwner;
 
-        $item = $node->createElement('item');
-        $name = $node->createElement('name', $itemName);
-        $price = $node->createElement('price', (float)$itemPrice);
-        $quantity = $node->createElement('quantity', (float)$itemQuantity);
-        $subTotal = $node->createElement('subtotal', (float)$itemPrice * (float)$itemQuantity);
+        $item = $this->xml->createElement('item');
+        $name = $this->xml->createElement('name', $itemName);
+        $price = $this->xml->createElement('price', (float)$itemPrice);
+        $quantity = $this->xml->createElement('quantity', (float)$itemQuantity);
+        $subTotal = $this->xml->createElement('subtotal', (float)$itemPrice * (float)$itemQuantity);
         $item->appendChild($name);
         $item->appendChild($price);
         $item->appendChild($quantity);
@@ -290,7 +289,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
     echo $cat->filterByCategory($_GET['category']);
 }
 
-if (isset($_POST['addToCart']) && !empty($_POST['itemName']) && !empty($_POST['itemPrice']) && !empty($_POST['itemQuantity'])) {
+if (isset($_GET['addToCart'])) {
     $cart = new Cart();
-    $cart->addToCart($_POST['itemName'], $_POST['itemPrice'], $_POST['itemQuantity']);
+    $cart->addToCart($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
 }

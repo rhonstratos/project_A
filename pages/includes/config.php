@@ -75,10 +75,11 @@ class Shop
     {
         return $this->xml->load($this->path);
     }
-    public function filterByCategory($category){
+    public function filterByCategory($category)
+    {
         $this->loadXML();
         $cat = "";
-        switch($category){
+        switch ($category) {
             case "dark_chocolate":
                 $cat = "darkChocolates";
                 break;
@@ -91,20 +92,21 @@ class Shop
         }
         $node = $this->xml->getElementsByTagName($cat)[0]->getElementsByTagName("item");
         $arr = array();
-        foreach($node as $targetNode){
+        foreach ($node as $targetNode) {
             $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
             $itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemPic = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
-            array_push($arr,array("name"=>$itemName,"description"=>$itemDesc,"price"=>$itemPrice,"picture"=>$itemPic)); 
+            array_push($arr, array("name" => $itemName, "description" => $itemDesc, "price" => $itemPrice, "picture" => $itemPic));
         }
-        $array = array("items"=>$arr);
+        $array = array("items" => $arr);
         return json_encode($array);
     }
-    public function search($search){
+    public function search($search)
+    {
         return "node";
     }
-    public function fillShop($search = NULL,$category = NULL)
+    public function fillShop($search = NULL, $category = NULL)
     {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName("item");
@@ -259,16 +261,17 @@ class Cart
     {
         return number_format($this->total, 2);
     }
-    public function addToCart($itemName,$itemPrice,$itemQuantity){
+    public function addToCart($itemName, $itemPrice, $itemQuantity)
+    {
         $this->loadXML();
         $cartOwner = $this->findCheckout($_SESSION['USER']);
         $node = $cartOwner;
 
         $item = $node->createElement('item');
-        $name = $node->createElement('name',$itemName);
-        $price = $node->createElement('price',(float)$itemPrice);
-        $quantity = $node->createElement('quantity',(float)$itemQuantity);
-        $subTotal = $node->createElement('subtotal', (float)$itemPrice*(float)$itemQuantity);
+        $name = $node->createElement('name', $itemName);
+        $price = $node->createElement('price', (float)$itemPrice);
+        $quantity = $node->createElement('quantity', (float)$itemQuantity);
+        $subTotal = $node->createElement('subtotal', (float)$itemPrice * (float)$itemQuantity);
         $item->appendChild($name);
         $item->appendChild($price);
         $item->appendChild($quantity);
@@ -282,12 +285,12 @@ class Purchases
 {
 }
 
-if(isset($_GET['category']) && !empty($_GET['category'])){
+if (isset($_GET['category']) && !empty($_GET['category'])) {
     $cat = new Shop();
     echo $cat->filterByCategory($_GET['category']);
 }
 
-if(isset($_POST['addToCart'])&& !empty($_POST['itemName'])&& !empty($_POST['itemPrice'])&& !empty($_POST['itemQuantity'])){
+if (isset($_POST['addToCart']) && !empty($_POST['itemName']) && !empty($_POST['itemPrice']) && !empty($_POST['itemQuantity'])) {
     $cart = new Cart();
-    $cart->addToCart($_POST['itemName'],$_POST['itemPrice'],$_POST['itemQuantity']);
+    $cart->addToCart($_POST['itemName'], $_POST['itemPrice'], $_POST['itemQuantity']);
 }

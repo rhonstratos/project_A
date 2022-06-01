@@ -117,7 +117,8 @@ function addToCart(){
     let itemName = document.getElementById("itemNameModal").value
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
-    let params = "addToCart=true&&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
+    let user = document.getElementById("user").innerHTML.toLowerCase()
+    let params = "addToCart=true&user="+user+"&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
     console.log(params)
     
     http.open("get", "../includes/config.php?"+params, true);

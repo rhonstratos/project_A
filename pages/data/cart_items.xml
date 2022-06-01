@@ -27,6 +27,18 @@
         <quantity>3</quantity>
         <subtotal>300</subtotal>
       </item>
+      <item>
+        <name>Hershey’s Kisses</name>
+        <price>115</price>
+        <quantity>333</quantity>
+        <subtotal>38295</subtotal>
+      </item>
+      <item>
+        <name>Toblerone</name>
+        <price>110</price>
+        <quantity>111</quantity>
+        <subtotal>12210</subtotal>
+      </item>
     </items>
     <paid>false</paid>
   </cart>

@@ -44,8 +44,8 @@ class SearchUser
         $this->loadXML();
         $save = $this->xml;
         $userTypeNode = $save->createElement('type', 'user');
-        $userUsernameNode = $save->createElement('username', $this->username);
-        $userPasswordNode = $save->createElement('password', $this->password);
+        $userUsernameNode = $save->createElement('username', strtolower($this->username));
+        $userPasswordNode = $save->createElement('password', strtolower($this->password));
         $userNode = $save->createElement("user");
 
         $userNode->appendChild($userTypeNode);
@@ -261,10 +261,10 @@ class Cart
     {
         return number_format($this->total, 2);
     }
-    public function addToCart($itemName, $itemPrice, $itemQuantity)
+    public function addToCart($user,$itemName, $itemPrice, $itemQuantity)
     {
         $this->loadXML();
-        $cartOwner = $this->findCheckout($_SESSION['USER']);
+        $cartOwner = $this->findCheckout($user);
 
         $item = $this->xml->createElement('item');
         $name = $this->xml->createElement('name', $itemName);
@@ -291,5 +291,5 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 
 if (isset($_GET['addToCart'])) {
     $cart = new Cart();
-    $cart->addToCart($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
+    $cart->addToCart($_GET['user'],$_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
 }

@@ -77,8 +77,29 @@ class Shop
     }
     public function filterByCategory($category){
         $this->loadXML();
-        $node = $this->xml->getElementsByTagName("item");
-        return "node";
+        $cat = "";
+        switch($category){
+            case "dark_chocolate":
+                $cat = "darkChocolates";
+                break;
+            case "milk_chocolate":
+                $cat = "milkChocolates";
+                break;
+            case "white_chocolate":
+                $cat = "whiteChocolates";
+                break;
+        }
+        $node = $this->xml->getElementsByTagName($cat)[0]->getElementsByTagName("item");
+        $arr = array();
+        foreach($node as $targetNode){
+            $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
+            $itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
+            $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $itemPic = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
+            array_push($arr,array("name"=>$itemName,"description"=>$itemDesc,"price"=>$itemPrice,"picture"=>$itemPic)); 
+        }
+        $array = array("items"=>$arr);
+        return json_encode($array);
     }
     public function search($search){
         return "node";
@@ -242,4 +263,8 @@ class Cart
 class Purchases
 {
 }
-?>
+
+if(isset($_GET['category']) && !empty($_GET['category'])){
+    $cat = new Shop();
+    echo $cat->filterByCategory($_GET['category']);
+}

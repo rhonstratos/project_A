@@ -98,6 +98,7 @@ function fillBrowseByCategory() {
 var modal = document.getElementById("myModal");
 var modalName = document.getElementById("itemNameModal")
 var modalPrice = document.getElementById("itemPriceModal")
+var modalQuantity = document.getElementById("itemQuantityModal")
 function setCart(id) {
     var target = document.getElementById(id)
     var span = target.getElementsByTagName("span")
@@ -129,7 +130,49 @@ function addToCart(){
     };
     http.send();
 }
+function showCheckoutModal(id){
+    var target = document.getElementById(id)
+    var span = target.getElementsByTagName("td")
+    var itemName = span[0].innerHTML
+    var itemQuantity = span[2].innerHTML
+    var itemPrice = span[1].innerHTML
 
+    modalName.readonly = false
+    modalPrice.readonly = false
+    modalQuantity.readonly = false
+    modalName.value = itemName
+    modalPrice.value = itemPrice
+    modalQuantity.value = itemQuantity
+    modalName.readonly = true
+    modalPrice.readonly = true
+    modalQuantity.readonly = true
+    document.getElementById("UpdateCheckoutModal").style.display = "block"
+}
+function updateCheckoutModal(){
+    var http = new XMLHttpRequest()
+    let itemName = document.getElementById("itemNameModal").value
+    let itemPrice = document.getElementById("itemPriceModal").value
+    let itemQuantity = document.getElementById("itemQuantityModal").value
+    let user = document.getElementById("user").innerHTML.toLowerCase()
+    let params = "updateCartItem=true&user="+user+"&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
+    console.log(params)
+    
+    http.open("get", "../includes/config.php?"+params, true);
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            document.getElementById("modal2").style.display = "block"
+        }
+    };
+    http.send();
+}
+function deleteCheckoutModal(id){
+
+}
+function closeAllModal(){
+    Array.from( document.getElementsByClassName("modal")).forEach(element=>{
+        element.style.display = "none"
+    })
+}
 function closeModal() {
     modal.style.display = "none";
 }

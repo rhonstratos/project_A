@@ -239,13 +239,13 @@ class Cart
                 $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
                 $this->total = $this->total + (float)$subtotal;
         ?>
-            <tr>
+            <tr id="<?php echo $name; ?>">
                 <td><?php echo $name; ?></td>
                 <td><?php echo $price; ?></td>
                 <td><?php echo $quantity; ?></td>
                 <td><?php echo $subtotal; ?></td>
-                <td><input type="button" value="Update" onclick="location.href='#'"></td>
-                <td><input type="button" value="Cancel" onclick="location.href='#'"></td>
+                <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $name; ?>')"></td>
+                <td><input type="button" value="Cancel" onclick="deleteCheckoutModal('<?php echo $name; ?>')"></td>
             </tr>
         <?php
             }

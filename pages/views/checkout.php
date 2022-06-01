@@ -36,6 +36,28 @@ $cart = new Cart() ?>
             </div>
         </div>
     </div>
+        <!-- The Modal -->
+        <div id="UpdateCheckoutModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content fit">
+            <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+            <h2>Update Item</h2>
+            <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
+            <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
+            <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity" >
+            <input class="fit" type="button" value="Yes" onclick="updateCheckoutModal()">
+            <button class="fit" type="button" onclick="closeAllModal()">No</button>
+        </div>
+    </div>
+    <div id="DeleteCheckoutModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content fit">
+            <span class="close" onclick="document.getElementById('modal2').style.display='none';">&times;</span>
+            <h2>Continue to Remove item from cart?</h2>
+            <input class="fit" type="button" value="Yes" onclick="deleteCheckoutModal()">
+            <button class="fit" type="button" onclick="closeAllModal()">No</button>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -28,34 +28,35 @@ $cart = new Cart() ?>
                     <?php $cart->fillCart($_SESSION['USER']); ?>
                 </tbody>
             </table>
-            <div class="pad-vertical-1">
-                <h3>Total: [PHP <?php echo $cart->getTotal(); ?>]</h3>
-                <form action="./checkout.php" method="post">
-                    <button type="submit" name="purchase">Purchase All</button>
-                </form>
+            <div class="pad-vertical-1 fit">
+                <h3 id="total">Total: [PHP <?php echo $cart->getTotal(); ?>]</h3>
+                <input class="fit" type="number" name="payment" id="payment" placeholder="Enter Payment">
+                <input class="fit mar-vertical-1" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
             </div>
         </div>
     </div>
+    <div id="modals">
         <!-- The Modal -->
         <div id="UpdateCheckoutModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content fit">
-            <span class="close" onclick="modal.style.display = 'none';">&times;</span>
-            <h2>Update Item</h2>
-            <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
-            <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
-            <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity" >
-            <input class="fit" type="button" value="Yes" onclick="updateCheckoutModal()">
-            <button class="fit" type="button" onclick="closeAllModal()">No</button>
+            <!-- Modal content -->
+            <div class="modal-content fit">
+                <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+                <h2>Update Item</h2>
+                <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
+                <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
+                <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
+                <input class="fit" type="button" value="Yes" onclick="updateCheckoutModal()">
+                <button class="fit" type="button" onclick="closeAllModal()">No</button>
+            </div>
         </div>
-    </div>
-    <div id="DeleteCheckoutModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content fit">
-            <span class="close" onclick="document.getElementById('modal2').style.display='none';">&times;</span>
-            <h2>Continue to Remove item from cart?</h2>
-            <input class="fit" type="button" value="Yes" onclick="deleteCheckoutModal()">
-            <button class="fit" type="button" onclick="closeAllModal()">No</button>
+        <div id="DeleteCheckoutModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content fit">
+                <span class="close" onclick="document.getElementById('modal2').style.display='none';">&times;</span>
+                <h2>Continue to Remove item from cart?</h2>
+                <input class="fit" type="button" value="Yes" onclick="deleteCheckoutModal()">
+                <button class="fit" type="button" onclick="closeAllModal()">No</button>
+            </div>
         </div>
     </div>
 </body>

@@ -4,7 +4,7 @@ function hide(event) {
         for (var element of span) {
             element.style.visibility = "hidden";
         }
-    },3000)
+    }, 3000)
 
 }
 function unhide(event) {
@@ -73,7 +73,7 @@ function fillBrowseByCategory() {
                 var button = document.createElement("button")
                 button.innerHTML = "Add to Cart"
                 button.type = "button"
-                button.addEventListener("click",function(){setCart(items.picture)},false)
+                button.addEventListener("click", function () { setCart(items.picture) }, false)
 
                 div3.appendChild(span1)
                 div3.appendChild(span2)
@@ -99,6 +99,26 @@ var modal = document.getElementById("myModal");
 var modalName = document.getElementById("itemNameModal")
 var modalPrice = document.getElementById("itemPriceModal")
 var modalQuantity = document.getElementById("itemQuantityModal")
+function purchaseCart() {
+    let total = parseFloat(document.getElementById("total").innerHTML.replaceAll(/[^\d.-]/g, ''))
+    let payment = parseFloat(document.getElementById("payment").value)
+    if (payment < total) {
+        alert("Please enter a valid payment amount and try again.")
+    }
+    else if (payment >= total) {
+        let http = new XMLHttpRequest()
+        let user = document.getElementById("user").innerHTML.toLowerCase()
+        let params = "purchaseCart=true&user="+user+"&"
+        http.open("get", "../includes/config.php?" + params, true);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                alert("Payment Successful!")
+                window.location.href = "./home.php"
+            }
+        };
+        http.send();
+    }
+}
 function setCart(id) {
     var target = document.getElementById(id)
     var span = target.getElementsByTagName("span")
@@ -113,16 +133,16 @@ function setCart(id) {
     modalPrice.readonly = true
     modal.style.display = "block"
 }
-function addToCart(){
-    var http = new XMLHttpRequest()
+function addToCart() {
+    let http = new XMLHttpRequest()
     let itemName = document.getElementById("itemNameModal").value
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "addToCart=true&user="+user+"&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
+    let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
     console.log(params)
-    
-    http.open("get", "../includes/config.php?"+params, true);
+
+    http.open("get", "../includes/config.php?" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             document.getElementById("modal2").style.display = "block"
@@ -130,7 +150,7 @@ function addToCart(){
     };
     http.send();
 }
-function showCheckoutModal(id){
+function showCheckoutModal(id) {
     var target = document.getElementById(id)
     var span = target.getElementsByTagName("td")
     var itemName = span[0].innerHTML
@@ -148,16 +168,16 @@ function showCheckoutModal(id){
     modalQuantity.readonly = true
     document.getElementById("UpdateCheckoutModal").style.display = "block"
 }
-function updateCheckoutModal(){
+function updateCheckoutModal() {
     var http = new XMLHttpRequest()
     let itemName = document.getElementById("itemNameModal").value
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "updateCartItem=true&user="+user+"&itemName="+itemName+"&itemPrice="+itemPrice+"&itemQuantity="+itemQuantity
+    let params = "updateCartItem=true&user=" + user + "&itemName=" + itemName + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
     console.log(params)
-    
-    http.open("get", "../includes/config.php?"+params, true);
+
+    http.open("get", "../includes/config.php?" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             document.getElementById("modal2").style.display = "block"
@@ -165,11 +185,11 @@ function updateCheckoutModal(){
     };
     http.send();
 }
-function deleteCheckoutModal(id){
+function deleteCheckoutModal(id) {
 
 }
-function closeAllModal(){
-    Array.from( document.getElementsByClassName("modal")).forEach(element=>{
+function closeAllModal() {
+    Array.from(document.getElementsByClassName("modal")).forEach(element => {
         element.style.display = "none"
     })
 }

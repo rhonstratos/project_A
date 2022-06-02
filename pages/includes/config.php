@@ -21,11 +21,8 @@ class SearchUser
     {
         $this->username = $username;
         $this->password = $password;
-        $this->xml = new DOMDocument("1.0");
-        $this->xml->preserveWhiteSpace = true;
-        $this->xml->formatOutput = true;
-        $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->saveXML();
+        $this->xml = new LocalXML($this->path);
+        $this->xml = $this->xml->getXML();
     }
     private function saveXML()
     {
@@ -75,15 +72,8 @@ class Shop
     private $xml;
     public function __construct()
     {
-        $this->xml = new DOMDocument("1.0");
-        $this->xml->preserveWhiteSpace = true;
-        $this->xml->formatOutput = true;
-        $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->saveXML();
-    }
-    private function saveXML()
-    {
-        return $this->xml->save($this->path);
+        $this->xml = new LocalXML($this->path);
+        $this->xml = $this->xml->getXML();
     }
     private function loadXML()
     {
@@ -174,15 +164,8 @@ class Inventory
     private $xml;
     public function __construct()
     {
-        $this->xml = new DOMDocument("1.0");
-        $this->xml->preserveWhiteSpace = true;
-        $this->xml->formatOutput = true;
-        $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->saveXML();
-    }
-    private function saveXML()
-    {
-        return $this->xml->save($this->path);
+        $this->xml = new LocalXML($this->path);
+        $this->xml = $this->xml->getXML();
     }
     private function loadXML()
     {
@@ -215,12 +198,8 @@ class Cart
     private $xml, $total;
     public function __construct()
     {
-        $this->total = (float) "0";
-        $this->xml = new DOMDocument("1.0");
-        $this->xml->preserveWhiteSpace = true;
-        $this->xml->formatOutput = true;
-        $this->xml->load($this->path, LIBXML_NOBLANKS);
-        $this->saveXML();
+        $this->xml = new LocalXML($this->path);
+        $this->xml = $this->xml->getXML();
     }
     private function saveXML()
     {

@@ -4,34 +4,10 @@
     <owner>user</owner>
     <items>
       <item>
-        <name>item1</name>
-        <price>200</price>
-        <quantity>2</quantity>
-        <subtotal>400</subtotal>
-      </item>
-      <item>
-        <name>item2</name>
-        <price>200</price>
-        <quantity>3</quantity>
-        <subtotal>600</subtotal>
-      </item>
-      <item>
-        <name>item3</name>
-        <price>200</price>
-        <quantity>4</quantity>
-        <subtotal>800</subtotal>
-      </item>
-      <item>
-        <name>Toblerone</name>
-        <price>100</price>
-        <quantity>3</quantity>
-        <subtotal>300</subtotal>
-      </item>
-      <item>
         <name>Hershey’s Kisses</name>
         <price>115</price>
-        <quantity>333</quantity>
-        <subtotal>38295</subtotal>
+        <quantity>12</quantity>
+        <subtotal>1380</subtotal>
       </item>
     </items>
   </cart>

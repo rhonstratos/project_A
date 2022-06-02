@@ -14,6 +14,10 @@ class LocalXML
     {
         return $this->xml;
     }
+    public function saveFormat($path){
+        $this->xml->load($path, LIBXML_NOBLANKS);
+        $this->xml->save($path);
+    }
 }
 class SearchUser
 {
@@ -277,9 +281,16 @@ class Cart
     function purchaseCart($user, $total, $payment,)
     {
         $this->loadXML();
-        $cloneNode = $this->findCheckout($user)->getElementsByTagName("items")[0]->cloneNode(true);
+        $owner = $this->findCheckout($user);
+        $cloneNode = $owner->getElementsByTagName("items")[0]->cloneNode(true);
         $transac = new Transactions();
         $transac->saveRecord($user, $total, $payment, $cloneNode);
+        $deleteNode = $owner->getElementsByTagName("items")[0];
+        $owner->removeChild($deleteNode);
+        $this->saveXML();$this->loadXML();
+        $owner = $this->findCheckout($user);
+        $owner->appendChild(new DOMElement("items"));
+        $this->saveXML();$this->loadXML();
     }
 }
 class Transactions

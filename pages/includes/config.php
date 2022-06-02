@@ -1,5 +1,6 @@
 <?php
-class LocalXML{
+class LocalXML
+{
     private $xml;
     public function __construct($path)
     {
@@ -9,7 +10,8 @@ class LocalXML{
         $this->xml->load($path, LIBXML_NOBLANKS);
         $this->xml->save($path);
     }
-    public function getXML(){
+    public function getXML()
+    {
         return $this->xml;
     }
 }
@@ -254,7 +256,7 @@ class Cart
     {
         return number_format($this->total, 2);
     }
-    public function addToCart($user,$itemName, $itemPrice, $itemQuantity)
+    public function addToCart($user, $itemName, $itemPrice, $itemQuantity)
     {
         $this->loadXML();
         $cartOwner = $this->findCheckout($user);
@@ -272,24 +274,28 @@ class Cart
         $this->saveXML();
         $this->loadXML();
     }
-    function purchaseCart($user,$total,$payment,){
+    function purchaseCart($user, $total, $payment,)
+    {
         $this->loadXML();
         $cloneNode = $this->findCheckout($user)->getElementsByTagName("items")[0]->cloneNode(true);
         $transac = new Transactions();
-        $transac->saveRecord($user,$total,$payment, $cloneNode);
+        $transac->saveRecord($user, $total, $payment, $cloneNode);
     }
 }
-class Transactions{
-    private $xml,$path = "../data/transaction_records.xml";
-    public function __construct(){
+class Transactions
+{
+    private $xml, $path = "../data/transaction_records.xml";
+    public function __construct()
+    {
         $this->xml = new LocalXML($this->path);
         $this->xml = $this->xml->getXML();
     }
 
-    private function findOwner($user){
+    private function findOwner($user)
+    {
         $node = $this->xml->getElementsByTagName("owner");
-        foreach ($node as $targetNode){
-            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $user){
+        foreach ($node as $targetNode) {
+            if ($targetNode->getElementsByTagName("name")[0]->nodeValue == $user) {
                 return $targetNode;
                 break;
             }
@@ -297,17 +303,17 @@ class Transactions{
         return NULL;
     }
 
-    public function saveRecord($user,$total,$payment,$itemsNode){
+    public function saveRecord($user, $total, $payment, $itemsNode)
+    {
         $node = $this->findOwner($user)->getElementsByTagName("purchases")[0];
         $purchaseNode = $this->xml->createElement("purchase");
-        $dateNode = $this->xml->createElement("date",date("Y-m-d",time()));
+        $dateNode = $this->xml->createElement("date", date("Y-m-d", time()));
         $purchaseNode->appendChild($dateNode);
-        $purchaseNode->appendChild($this->xml->importNode($itemsNode,true));
-        $purchaseNode->appendChild($this->xml->createElement("total",$total));
-        $purchaseNode->appendChild($this->xml->createElement("payment",$payment));
+        $purchaseNode->appendChild($this->xml->importNode($itemsNode, true));
+        $purchaseNode->appendChild($this->xml->createElement("total", $total));
+        $purchaseNode->appendChild($this->xml->createElement("payment", $payment));
         $node->appendChild($purchaseNode);
         $this->xml->save($this->path);
-        echo "saved";
     }
 }
 
@@ -318,10 +324,10 @@ if (isset($_GET['category'])) {
 
 if (isset($_GET['addToCart'])) {
     $cart = new Cart();
-    $cart->addToCart($_GET['user'],$_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
+    $cart->addToCart($_GET['user'], $_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
 }
 
-if(isset($_GET['purchaseCart'])){
+if (isset($_GET['purchaseCart'])) {
     $purchase = new Cart();
-    $purchase->purchaseCart($_GET['user'],$_GET['total'],$_GET['payment']);
+    $purchase->purchaseCart($_GET['user'], $_GET['total'], $_GET['payment']);
 }

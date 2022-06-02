@@ -10,7 +10,6 @@
             <input type="button" value="Filter" onclick="fillBrowseByCategory()">
         </div>
     </div>
-    <button id="myBtn">Open Modal</button>
     <div class="grid" id="browse">
         <?php
         $shop = new Shop();

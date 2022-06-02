@@ -108,7 +108,7 @@ function purchaseCart() {
     else if (payment >= total) {
         let http = new XMLHttpRequest()
         let user = document.getElementById("user").innerHTML.toLowerCase()
-        let params = "purchaseCart=true&user="+user+"&"
+        let params = "purchaseCart=true&user="+user+"&total="+total+"&payment="+payment
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {

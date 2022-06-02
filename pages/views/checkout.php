@@ -30,7 +30,7 @@ $cart = new Cart() ?>
             </table>
             <div class="pad-vertical-1 fit">
                 <h3 id="total">Total: [PHP <?php echo $cart->getTotal(); ?>]</h3>
-                <input class="fit" type="number" name="payment" id="payment" placeholder="Enter Payment">
+                <input class="fit text-center" type="number" name="payment" id="payment" placeholder="Enter Payment">
                 <input class="fit mar-vertical-1" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
             </div>
         </div>

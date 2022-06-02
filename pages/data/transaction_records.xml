@@ -1,1 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<purchaseHistory>
+    <owner>
+        <name>user</name>
+        <purchases>
+            <purchase>
+                <date>2022-06-02</date>
+                <items>
+                    <item>
+                        <name>item1</name>
+                        <price>200</price>
+                        <quantity>2</quantity>
+                        <subtotal>400</subtotal>
+                    </item>
+                    <item>
+                        <name>item2</name>
+                        <price>200</price>
+                        <quantity>3</quantity>
+                        <subtotal>600</subtotal>
+                    </item>
+                    <item>
+                        <name>item3</name>
+                        <price>200</price>
+                        <quantity>4</quantity>
+                        <subtotal>800</subtotal>
+                    </item>
+                    <item>
+                        <name>Toblerone</name>
+                        <price>100</price>
+                        <quantity>3</quantity>
+                        <subtotal>300</subtotal>
+                    </item>
+                    <item>
+                        <name>Hershey’s Kisses</name>
+                        <price>115</price>
+                        <quantity>333</quantity>
+                        <subtotal>38295</subtotal>
+                    </item>
+                </items>
+                <total>40395</total>
+                <payment>40395</payment>
+            </purchase>
+        </purchases>
+    </owner>
+</purchaseHistory>

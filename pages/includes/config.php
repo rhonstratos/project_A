@@ -272,19 +272,42 @@ class Cart
         $this->saveXML();
         $this->loadXML();
     }
+    function purchaseCart($user,$total,$payment,){
+        $this->loadXML();
+        $cloneNode = $this->findCheckout($user)->getElementsByTagName("items")[0]->cloneNode(true);
+        $transac = new Transactions();
+        $transac->saveRecord($user,$total,$payment, $cloneNode);
+    }
 }
-class Purchases
-{
-    private $xml,$path = "../data/cart_items.xml";
-    function __construct(){
+class Transactions{
+    private $xml,$path = "../data/transaction_records.xml";
+    public function __construct(){
         $this->xml = new LocalXML($this->path);
         $this->xml = $this->xml->getXML();
     }
-    function purchaseCart($user){
-        $node = $this->xml->getElementsByTagName("item");
+
+    private function findOwner($user){
+        $node = $this->xml->getElementsByTagName("owner");
         foreach ($node as $targetNode){
-            echo $targetNode->nodeName;
+            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $user){
+                return $targetNode;
+                break;
+            }
         }
+        return NULL;
+    }
+
+    public function saveRecord($user,$total,$payment,$itemsNode){
+        $node = $this->findOwner($user)->getElementsByTagName("purchases")[0];
+        $purchaseNode = $this->xml->createElement("purchase");
+        $dateNode = $this->xml->createElement("date",date("Y-m-d",time()));
+        $purchaseNode->appendChild($dateNode);
+        $purchaseNode->appendChild($this->xml->importNode($itemsNode,true));
+        $purchaseNode->appendChild($this->xml->createElement("total",$total));
+        $purchaseNode->appendChild($this->xml->createElement("payment",$payment));
+        $node->appendChild($purchaseNode);
+        $this->xml->save($this->path);
+        echo "saved";
     }
 }
 
@@ -299,6 +322,6 @@ if (isset($_GET['addToCart'])) {
 }
 
 if(isset($_GET['purchaseCart'])){
-    $purchase = new Purchases();
-    $purchase->purchaseCart("user");
+    $purchase = new Cart();
+    $purchase->purchaseCart($_GET['user'],$_GET['total'],$_GET['payment']);
 }

@@ -34,7 +34,6 @@
         <subtotal>38295</subtotal>
       </item>
     </items>
-    <paid>false</paid>
   </cart>
   <cart>
     <owner>user2</owner>
@@ -46,7 +45,6 @@
         <subtotal>400</subtotal>
       </item>
     </items>
-    <paid>false</paid>
   </cart>
   <cart>
     <owner>user3</owner>
@@ -58,6 +56,5 @@
         <subtotal>400</subtotal>
       </item>
     </items>
-    <paid>false</paid>
   </cart>
 </carts>

@@ -1,4 +1,18 @@
 <?php
+class LocalXML{
+    private $xml;
+    public function __construct($path)
+    {
+        $this->xml = new DOMDocument("1.0");
+        $this->xml->preserveWhiteSpace = true;
+        $this->xml->formatOutput = true;
+        $this->xml->load($path, LIBXML_NOBLANKS);
+        $this->xml->save($path);
+    }
+    public function getXML(){
+        return $this->xml;
+    }
+}
 class SearchUser
 {
     private $path = "../data/users.xml";
@@ -282,9 +296,20 @@ class Cart
 }
 class Purchases
 {
+    private $xml,$path = "../data/cart_items.xml";
+    function __construct(){
+        $this->xml = new LocalXML($this->path);
+        $this->xml = $this->xml->getXML();
+    }
+    function purchaseCart($user){
+        $node = $this->xml->getElementsByTagName("item");
+        foreach ($node as $targetNode){
+            echo $targetNode->nodeName;
+        }
+    }
 }
 
-if (isset($_GET['category']) && !empty($_GET['category'])) {
+if (isset($_GET['category'])) {
     $cat = new Shop();
     echo $cat->filterByCategory($_GET['category']);
 }
@@ -292,4 +317,9 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 if (isset($_GET['addToCart'])) {
     $cart = new Cart();
     $cart->addToCart($_GET['user'],$_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
+}
+
+if(isset($_GET['purchaseCart'])){
+    $purchase = new Purchases();
+    $purchase->purchaseCart("user");
 }

@@ -259,9 +259,9 @@ class Cart
         ?>
             <tr id="<?php echo $id; ?>">
                 <td><?php echo $name; ?></td>
-                <td><?php echo $price; ?></td>
+                <td><?php echo number_format($price,2); ?></td>
                 <td><?php echo $quantity; ?></td>
-                <td><?php echo $subtotal; ?></td>
+                <td><?php echo number_format($subtotal,2); ?></td>
                 <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
                 <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
             </tr>

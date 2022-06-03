@@ -137,13 +137,16 @@ function addToCart() {
     let user = document.getElementById("user").innerHTML.toLowerCase()
     let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemCategory=" + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
 
-    http.open("get", "../includes/config.php?" + params, true);
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal2").style.display = "block"
-        }
-    };
-    http.send();
+    if (parseFloat(itemQuantity) < 1) { alert("Please enter avalid quantity and try again.") }
+    else {
+        http.open("get", "../includes/config.php?" + params, true);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                document.getElementById("modal2").style.display = "block"
+            }
+        };
+        http.send();
+    }
 }
 function showCheckoutModal(id) {
     var target = document.getElementById(id)

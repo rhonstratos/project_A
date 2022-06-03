@@ -53,9 +53,9 @@ $cart = new Cart() ?>
         <div id="modal2" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal();">&times;</span>
+                <span class="close" onclick="closeAllModal(); location.href='./checkout.php';">&times;</span>
                 <h2>Cart Item Updated!</h2>
-                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php'">
+                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php';">
             </div>
         </div>
         <div id="DeleteCheckoutModal" class="modal">
@@ -70,9 +70,9 @@ $cart = new Cart() ?>
         <div id="modal3" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal();">&times;</span>
+                <span class="close" onclick="closeAllModal(); location.href='./checkout.php';">&times;</span>
                 <h2>Cart Item Deleted!</h2>
-                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php'">
+                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php';">
             </div>
         </div>
     </div>

@@ -409,6 +409,26 @@
   </owner>
   <owner>
     <name>test</name>
-    <purchases />
+    <purchases>
+      <purchase>
+        <date>2022-06-03</date>
+        <items>
+      <item>
+        <name>Toblerone</name>
+        <price>110</price>
+        <quantity>10</quantity>
+        <subtotal>1100</subtotal>
+      </item>
+      <item>
+        <name>KitKat</name>
+        <price>155</price>
+        <quantity>3</quantity>
+        <subtotal>465</subtotal>
+      </item>
+    </items>
+        <total>1565</total>
+        <payment>1565</payment>
+      </purchase>
+    </purchases>
   </owner>
 </purchaseHistory>

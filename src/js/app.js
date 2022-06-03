@@ -17,60 +17,56 @@ function resetBrowse() {
     document.getElementById("browse").innerHTML = ""
 }
 function fillBrowseByCategory() {
-    var category = document.getElementById("category").value
+    let category = document.getElementById("category").value
 
-    var http = new XMLHttpRequest()
+    let http = new XMLHttpRequest()
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             resetBrowse()
-            var xmlDocument = http.responseText;
-            console.log(JSON.parse(xmlDocument))
-            var obj = JSON.parse(xmlDocument)
-            var json = obj.items
-            for (items of json)
-                console.log((items.picture))
-
+            let xmlDocument = http.responseText;
+            let obj = JSON.parse(xmlDocument)
+            let json = obj.items
             for (items of json) {
-                var div = document.createElement("div")
+                let div = document.createElement("div")
                 div.className = "item-list row fit"
 
-                var div1 = document.createElement("div")
+                let div1 = document.createElement("div")
                 div1.className = "card"
                 div1.id = items.picture
                 div1.onmouseover = unhide
                 div1.onmouseout = hide
 
-                var div2 = document.createElement("div")
+                let div2 = document.createElement("div")
                 div2.className = "body"
 
-                var img = document.createElement("img")
+                let img = document.createElement("img")
                 img.src = "../assets/" + items.picture
                 img.className = "item-img"
                 img.alt = "item"
                 img.width = 100
                 img.height = 200
 
-                var div3 = document.createElement("div")
+                let div3 = document.createElement("div")
                 div3.className = "pad-vertical-1"
 
-                var span1 = document.createElement("span")
+                let span1 = document.createElement("span")
                 span1.style.visibility = "hidden"
                 span1.id = "itemName"
                 span1.className = "text-center"
                 span1.innerHTML = items.name
 
-                var span2 = document.createElement("span")
+                let span2 = document.createElement("span")
                 span2.style.visibility = "hidden"
                 span2.id = "itemDesc"
                 span2.innerHTML = items.description
 
-                var span3 = document.createElement("span")
+                let span3 = document.createElement("span")
                 span3.style.visibility = "hidden"
                 span3.id = "itemPrice"
                 span3.className = "text-center"
                 span3.innerHTML = items.price
 
-                var button = document.createElement("button")
+                let button = document.createElement("button")
                 button.innerHTML = "Add to Cart"
                 button.type = "button"
                 button.addEventListener("click", function () { setCart(items.picture) }, false)
@@ -139,7 +135,7 @@ function addToCart() {
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
+    let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemCategory=" + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
     console.log(params)
 
     http.open("get", "../includes/config.php?" + params, true);
@@ -169,9 +165,8 @@ function showCheckoutModal(id) {
     document.getElementById("UpdateCheckoutModal").style.display = "block"
 }
 function updateCheckoutModal() {
-    var http = new XMLHttpRequest()
+    let http = new XMLHttpRequest()
     let itemName = document.getElementById("itemNameModal").value
-    let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
     let params = "updateCartItem=true&user=" + user + "&itemName=" + itemName + "&itemQuantity=" + itemQuantity
@@ -189,16 +184,34 @@ function updateCheckoutModal() {
         http.send();
     }
 }
+function showDelete(id) {
+    let itemName = id.split("|")
+    document.getElementById("deletItemName").innerHTML = "Continue to Remove item [" + itemName[0] + "] from cart?"
+    let deleteModal = document.getElementById("DeleteCheckoutModal")
+    document.getElementById("itmDelete").onclick = function () { deleteCheckoutModal(id) }
+    deleteModal.style.display = "block"
+}
 function deleteCheckoutModal(id) {
+    let str = id.split("|")
+    let http = new XMLHttpRequest()
+    let user = document.getElementById("user").innerHTML.toLowerCase()
+    let params = "?deleteCartItem=true&user=" + user + "&itemName=" + str[0] + "&itemPrice=" + str[1] + "&itemQuantity=" + str[2]
 
+    http.open("get", "../includes/config.php" + params, true);
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            console.log(str[0])
+            console.log(str[1])
+            console.log(str[2])
+            document.getElementById("modal3").style.display = "block"
+        }
+    };
+    http.send();
 }
 function closeAllModal() {
     Array.from(document.getElementsByClassName("modal")).forEach(element => {
         element.style.display = "none"
     })
-}
-function closeModal() {
-    modal.style.display = "none";
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {

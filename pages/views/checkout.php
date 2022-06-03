@@ -41,7 +41,7 @@ $cart = new Cart() ?>
         <div id="UpdateCheckoutModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+                <span class="close" onclick="closeAllModal();">&times;</span>
                 <h2>Update Item</h2>
                 <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
                 <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
@@ -53,7 +53,7 @@ $cart = new Cart() ?>
         <div id="modal2" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+                <span class="close" onclick="closeAllModal();">&times;</span>
                 <h2>Cart Item Updated!</h2>
                 <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php'">
             </div>
@@ -61,10 +61,18 @@ $cart = new Cart() ?>
         <div id="DeleteCheckoutModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="document.getElementById('modal2').style.display='none';">&times;</span>
-                <h2>Continue to Remove item from cart?</h2>
-                <input class="fit" type="button" value="Yes" onclick="deleteCheckoutModal()">
+                <span class="close" onclick="closeAllModal();">&times;</span>
+                <h2 id="deletItemName">Continue to Remove item from cart?</h2>
+                <input class="fit" id="itmDelete" type="button" value="Yes" onclick="deleteCheckoutModal()">
                 <button class="fit" type="button" onclick="closeAllModal()">No</button>
+            </div>
+        </div>
+        <div id="modal3" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content fit">
+                <span class="close" onclick="closeAllModal();">&times;</span>
+                <h2>Cart Item Deleted!</h2>
+                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php'">
             </div>
         </div>
     </div>

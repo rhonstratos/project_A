@@ -14,7 +14,8 @@ class LocalXML
     {
         return $this->xml;
     }
-    public function saveFormat($path){
+    public function saveFormat($path)
+    {
         $this->xml->load($path, LIBXML_NOBLANKS);
         $this->xml->save($path);
     }
@@ -213,11 +214,12 @@ class Cart
         $this->xml = new LocalXML($this->path);
         $this->xml = $this->xml->getXML();
     }
-    public function initCart($username){
+    public function initCart($username)
+    {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName("carts")[0];
         $cartNode = $this->xml->createElement("cart");
-        $ownerNode = $this->xml->createElement("owner",$username);
+        $ownerNode = $this->xml->createElement("owner", $username);
         $cartNode->appendChild($ownerNode);
         $cartNode->appendChild($this->xml->createElement("items"));
         $node->appendChild($cartNode);
@@ -252,15 +254,16 @@ class Cart
                 $price = $item->getElementsByTagName("price")[0]->nodeValue;
                 $quantity = $item->getElementsByTagName("quantity")[0]->nodeValue;
                 $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
+                $id = "$name|$price|$quantity";
                 $this->total = $this->total + (float)$subtotal;
         ?>
-            <tr id="<?php echo $name; ?>">
+            <tr id="<?php echo $id; ?>">
                 <td><?php echo $name; ?></td>
                 <td><?php echo $price; ?></td>
                 <td><?php echo $quantity; ?></td>
                 <td><?php echo $subtotal; ?></td>
-                <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $name; ?>')"></td>
-                <td><input type="button" value="Cancel" onclick="deleteCheckoutModal('<?php echo $name; ?>')"></td>
+                <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
+                <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
             </tr>
         <?php
             }
@@ -276,11 +279,12 @@ class Cart
     {
         return number_format($this->total, 2);
     }
-    public function updateCart($user, $itemName, $itemQuantity){
+    public function updateCart($user, $itemName, $itemQuantity)
+    {
         $this->loadXML();
         $node = $this->findCheckout($user)->getElementsByTagName("item");
-        foreach($node as $targetNode){
-            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName){
+        foreach ($node as $targetNode) {
+            if ($targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName) {
                 #echo $targetNode->getElementsByTagName("name")[0]->nodeValue;
                 $price = $targetNode->getElementsByTagName("price")[0]->nodeValue;
                 $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
@@ -289,6 +293,24 @@ class Cart
             }
         }
         $this->saveXML();
+    }
+    public function deleteCart($user, $itemName, $itemPrice, $itemQuantity)
+    {
+        $this->loadXML();
+        $node = $this->findCheckout($user)->getElementsByTagName("item");
+        foreach ($node as $targetNode) {
+            #echo $targetNode->getElementsByTagName("name")[0]->nodeValue." | ".$itemName . "<br>";
+            #echo $targetNode->getElementsByTagName("price")[0]->nodeValue." | ".$itemPrice . "<br>";
+            #echo $targetNode->getElementsByTagName("quantity")[0]->nodeValue." | ".$itemQuantity;
+            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName &&
+            $targetNode->getElementsByTagName("price")[0]->nodeValue == $itemPrice &&
+            $targetNode->getElementsByTagName("quantity")[0]->nodeValue == $itemQuantity ){
+                $targetNode->parentNode->removeChild($targetNode);
+                $this->saveXML();
+                echo "deleted";
+                break;
+            }
+        }
     }
     public function addToCart($user, $itemName, $itemPrice, $itemQuantity)
     {
@@ -308,7 +330,7 @@ class Cart
         $this->saveXML();
         $this->loadXML();
     }
-    function purchaseCart($user, $total, $payment,)
+    public function purchaseCart($user, $total, $payment,)
     {
         $this->loadXML();
         $owner = $this->findCheckout($user);
@@ -317,10 +339,12 @@ class Cart
         $transac->saveRecord($user, $total, $payment, $cloneNode);
         $deleteNode = $owner->getElementsByTagName("items")[0];
         $owner->removeChild($deleteNode);
-        $this->saveXML();$this->loadXML();
+        $this->saveXML();
+        $this->loadXML();
         $owner = $this->findCheckout($user);
         $owner->appendChild(new DOMElement("items"));
-        $this->saveXML();$this->loadXML();
+        $this->saveXML();
+        $this->loadXML();
     }
 }
 class Transactions
@@ -356,10 +380,11 @@ class Transactions
         $node->appendChild($purchaseNode);
         $this->xml->save($this->path);
     }
-    public function initTransac($username){
+    public function initTransac($username)
+    {
         $node = $this->xml->getElementsByTagName("purchaseHistory")[0];
         $transacNode = $this->xml->createElement("owner");
-        $ownerNode = $this->xml->createElement("name",$username);
+        $ownerNode = $this->xml->createElement("name", $username);
         $transacNode->appendChild($ownerNode);
         $transacNode->appendChild($this->xml->createElement("purchases"));
         $node->appendChild($transacNode);
@@ -367,6 +392,7 @@ class Transactions
     }
 }
 
+#AJAX GET REQUEST CATCHERS
 if (isset($_GET['category'])) {
     $cat = new Shop();
     echo $cat->filterByCategory($_GET['category']);
@@ -382,7 +408,12 @@ if (isset($_GET['purchaseCart'])) {
     $purchase->purchaseCart($_GET['user'], $_GET['total'], $_GET['payment']);
 }
 
-if(isset($_GET['updateCartItem'])){
+if (isset($_GET['updateCartItem'])) {
     $cart = new Cart();
     $cart->updateCart($_GET['user'], $_GET['itemName'], $_GET['itemQuantity']);
+}
+
+if (isset($_GET['deleteCartItem'])) {
+    $cart = new Cart();
+    $cart->deleteCart($_GET['user'], $_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
 }

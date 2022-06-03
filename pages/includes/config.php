@@ -70,6 +70,12 @@ class SearchUser
         $userNode->appendChild($userPasswordNode);
         $save->getElementsByTagName('users')[0]->appendChild($userNode);
         $this->saveXML();
+
+        $initCart = new Cart();
+        $initTransac = new Transactions();
+
+        $initCart->initCart($this->username);
+        $initTransac->initTransac($this->username);
     }
 }
 class Shop
@@ -207,6 +213,16 @@ class Cart
         $this->xml = new LocalXML($this->path);
         $this->xml = $this->xml->getXML();
     }
+    public function initCart($username){
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName("carts")[0];
+        $cartNode = $this->xml->createElement("cart");
+        $ownerNode = $this->xml->createElement("owner",$username);
+        $cartNode->appendChild($ownerNode);
+        $cartNode->appendChild($this->xml->createElement("items"));
+        $node->appendChild($cartNode);
+        $this->xml->save($this->path);
+    }
     private function saveXML()
     {
         return $this->xml->save($this->path);
@@ -324,6 +340,15 @@ class Transactions
         $purchaseNode->appendChild($this->xml->createElement("total", $total));
         $purchaseNode->appendChild($this->xml->createElement("payment", $payment));
         $node->appendChild($purchaseNode);
+        $this->xml->save($this->path);
+    }
+    public function initTransac($username){
+        $node = $this->xml->getElementsByTagName("purchaseHistory")[0];
+        $transacNode = $this->xml->createElement("owner");
+        $ownerNode = $this->xml->createElement("name",$username);
+        $transacNode->appendChild($ownerNode);
+        $transacNode->appendChild($this->xml->createElement("purchases"));
+        $node->appendChild($transacNode);
         $this->xml->save($this->path);
     }
 }

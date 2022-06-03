@@ -20,4 +20,9 @@
     <username>vreiln</username>
     <password>eykha</password>
   </user>
+  <user>
+    <type>user</type>
+    <username>test</username>
+    <password>test123</password>
+  </user>
 </users>

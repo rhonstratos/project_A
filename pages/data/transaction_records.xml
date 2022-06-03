@@ -389,22 +389,26 @@
       <purchase>
         <date>2022-06-02</date>
         <items>
-      <item>
-        <name>KitKat</name>
-        <price>155</price>
-        <quantity>50</quantity>
-        <subtotal>7750</subtotal>
-      </item>
-      <item>
-        <name>Hershey’s Kisses</name>
-        <price>115</price>
-        <quantity>333</quantity>
-        <subtotal>38295</subtotal>
-      </item>
-    </items>
+          <item>
+            <name>KitKat</name>
+            <price>155</price>
+            <quantity>50</quantity>
+            <subtotal>7750</subtotal>
+          </item>
+          <item>
+            <name>Hershey’s Kisses</name>
+            <price>115</price>
+            <quantity>333</quantity>
+            <subtotal>38295</subtotal>
+          </item>
+        </items>
         <total>46045</total>
         <payment>50000</payment>
       </purchase>
     </purchases>
+  </owner>
+  <owner>
+    <name>test</name>
+    <purchases />
   </owner>
 </purchaseHistory>

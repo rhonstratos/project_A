@@ -20,7 +20,7 @@ $cart = new Cart() ?>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>SubTotal</th>
+                        <th>Subtotal</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
@@ -48,6 +48,14 @@ $cart = new Cart() ?>
                 <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
                 <input class="fit" type="button" value="Yes" onclick="updateCheckoutModal()">
                 <button class="fit" type="button" onclick="closeAllModal()">No</button>
+            </div>
+        </div>
+        <div id="modal2" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content fit">
+                <span class="close" onclick="modal.style.display = 'none';">&times;</span>
+                <h2>Cart Item Updated!</h2>
+                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php'">
             </div>
         </div>
         <div id="DeleteCheckoutModal" class="modal">

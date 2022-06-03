@@ -39,14 +39,14 @@
       <item>
         <name>Toblerone</name>
         <price>110</price>
-        <quantity>3</quantity>
-        <subtotal>330</subtotal>
+        <quantity>10</quantity>
+        <subtotal>1100</subtotal>
       </item>
       <item>
         <name>KitKat</name>
         <price>155</price>
-        <quantity>2</quantity>
-        <subtotal>310</subtotal>
+        <quantity>3</quantity>
+        <subtotal>465</subtotal>
       </item>
     </items>
   </cart>

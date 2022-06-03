@@ -276,6 +276,20 @@ class Cart
     {
         return number_format($this->total, 2);
     }
+    public function updateCart($user, $itemName, $itemQuantity){
+        $this->loadXML();
+        $node = $this->findCheckout($user)->getElementsByTagName("item");
+        foreach($node as $targetNode){
+            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName){
+                #echo $targetNode->getElementsByTagName("name")[0]->nodeValue;
+                $price = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+                $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
+                $targetNode->getElementsByTagName("subtotal")[0]->nodeValue = (float)$price * (float)$itemQuantity;
+                break;
+            }
+        }
+        $this->saveXML();
+    }
     public function addToCart($user, $itemName, $itemPrice, $itemQuantity)
     {
         $this->loadXML();
@@ -366,4 +380,9 @@ if (isset($_GET['addToCart'])) {
 if (isset($_GET['purchaseCart'])) {
     $purchase = new Cart();
     $purchase->purchaseCart($_GET['user'], $_GET['total'], $_GET['payment']);
+}
+
+if(isset($_GET['updateCartItem'])){
+    $cart = new Cart();
+    $cart->updateCart($_GET['user'], $_GET['itemName'], $_GET['itemQuantity']);
 }

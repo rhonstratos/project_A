@@ -108,7 +108,7 @@ function purchaseCart() {
     else if (payment >= total) {
         let http = new XMLHttpRequest()
         let user = document.getElementById("user").innerHTML.toLowerCase()
-        let params = "purchaseCart=true&user="+user+"&total="+total+"&payment="+payment
+        let params = "purchaseCart=true&user=" + user + "&total=" + total + "&payment=" + payment
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
@@ -174,16 +174,20 @@ function updateCheckoutModal() {
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "updateCartItem=true&user=" + user + "&itemName=" + itemName + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
-    console.log(params)
+    let params = "updateCartItem=true&user=" + user + "&itemName=" + itemName + "&itemQuantity=" + itemQuantity
 
-    http.open("get", "../includes/config.php?" + params, true);
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal2").style.display = "block"
-        }
-    };
-    http.send();
+    if (parseFloat(itemQuantity) < 1) {
+        alert("Please enter a valid quantity and try again.")
+    }
+    else {
+        http.open("get", "../includes/config.php?" + params, true);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                document.getElementById("modal2").style.display = "block"
+            }
+        };
+        http.send();
+    }
 }
 function deleteCheckoutModal(id) {
 
@@ -196,7 +200,6 @@ function closeAllModal() {
 function closeModal() {
     modal.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {

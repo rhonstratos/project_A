@@ -136,7 +136,6 @@ function addToCart() {
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
     let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemCategory=" + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
-    console.log(params)
 
     http.open("get", "../includes/config.php?" + params, true);
     http.onreadystatechange = function () {
@@ -200,9 +199,6 @@ function deleteCheckoutModal(id) {
     http.open("get", "../includes/config.php" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            console.log(str[0])
-            console.log(str[1])
-            console.log(str[2])
             document.getElementById("modal3").style.display = "block"
         }
     };

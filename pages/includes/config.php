@@ -390,6 +390,15 @@ class Transactions
         $node->appendChild($transacNode);
         $this->xml->save($this->path);
     }
+    public function fillPurchases($user){
+        $node = $this->findOwner($user)->getElementsByTagName("purchase");
+        foreach ($node as $targetNode){
+            $date = $targetNode->getElementsByTagName("date")[0]->nodeValue;
+            ?>
+            
+            <?php
+        }
+    }
 }
 
 #AJAX GET REQUEST CATCHERS

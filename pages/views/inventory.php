@@ -14,130 +14,23 @@ $inventory = new Inventory();?>
 <body>
     <?php require_once "../includes/navbar_inventory.php"; ?>
     <div>
-        
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="row" style="align-items: flex-start;">
+            <div class="fit">
+                <h2>Dark Chocolates</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $inventory->loadInventory("darkChocolates");?>
+                    </tbody>
+                </table>
+            </div>
             <div class="fit">
                 <h2>Milk Chocolates</h2>
                 <table>

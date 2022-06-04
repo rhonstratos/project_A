@@ -206,15 +206,13 @@ class Inventory
         <?php
         }
     }
-    public function updateInventoryItem($category, $itemName, $itemPrice, $itemQuantity)
+    public function updateInventoryItem($itemName, $itemPrice, $itemQuantity,$category)
     {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($category)[0]->getElementsByTagName("item");
         foreach ($node as $targetNode) {
             $name = $targetNode->getElementsByTagName("name")[0]->nodeValue;
-            $price = $targetNode->getElementsByTagName("price")[0]->nodeValue;
-            $quantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-            if ($name == $itemName && $price == $itemPrice && $quantity == $itemQuantity) {
+            if ($name == $itemName) {
                 $targetNode->getElementsByTagName("name")[0]->nodeValue = $itemName;
                 $targetNode->getElementsByTagName("price")[0]->nodeValue = $itemPrice;
                 $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
@@ -485,5 +483,5 @@ if (isset($_GET['deleteCartItem'])) {
 
 if (isset($_GET['updateInventoryCart'])) {
     $inventory = new Inventory();
-    $inventory->updateInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['category']);
+    $inventory->updateInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['Invcategory']);
 }

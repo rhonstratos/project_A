@@ -111,11 +111,11 @@ function updateInventoryItem(id) {
 function updateInventoryModal() {
     let http = new XMLHttpRequest()
     let itemInvName = document.getElementById("itemInventoryNameModal").value
-    let itemIvnPrice = parseFloat(document.getElementById("itemInventoryPriceModal").value)
-    let itemIvnQuantity = parseFloat(document.getElementById("itemInventoryQuantityModal").value)
+    let itemIvnPrice = document.getElementById("itemInventoryPriceModal").value
+    let itemIvnQuantity = document.getElementById("itemInventoryQuantityModal").value
     let updateBtn = document.getElementById("invUpdate")
     let category = updateBtn.getAttribute("category")
-    let params = "updateInventoryCart=true&itemName=" + itemInvName + "&itemPrice=" + itemIvnPrice + "&itemQuantity=" + itemIvnQuantity + "&category=" + category
+    let params = "updateInventoryCart=true&itemName=" + itemInvName + "&itemPrice=" + itemIvnPrice + "&itemQuantity=" + itemIvnQuantity + "&Invcategory=" + category
 
     if (itemIvnQuantity < 1 || itemIvnPrice < 1)
         alert("Please enter avalid parameters and try again.")

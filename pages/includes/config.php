@@ -214,11 +214,14 @@ class Inventory
             $name = $targetNode->getElementsByTagName("name")[0]->nodeValue;
             if ($name == $itemName) {
                 $targetNode->getElementsByTagName("name")[0]->nodeValue = $itemName;
-                $targetNode->getElementsByTagName("price")[0]->nodeValue = $itemPrice;
+                $targetNode->getElementsByTagName("price")[0]->nodeValue = number_format($itemPrice,2);
                 $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
                 $this->xml->save($this->path);
             }
         }
+    }
+    public function deleteInventoryItem($itemName, $itemPrice, $itemQuantity,$category){
+
     }
 }
 class Cart
@@ -484,4 +487,9 @@ if (isset($_GET['deleteCartItem'])) {
 if (isset($_GET['updateInventoryCart'])) {
     $inventory = new Inventory();
     $inventory->updateInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['Invcategory']);
+}
+
+if (isset($_GET['deleteInventoryCart'])) {
+    $inventory = new Inventory();
+    $inventory->deleteInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['Invcategory']);
 }

@@ -12,7 +12,7 @@ $user = new User(); ?>
     </div>
     <div class="row-end">
         <a href="./checkout.php" class="nav-item nostyle">Checkout Cart</a>
-        <a href="#" class="nav-item nostyle">Purchase History</a>
+        <a href="./purchases.php" class="nav-item nostyle">Purchase History</a>
         <div class="dropdown fit">
             <button class="dropbtn" type="button" id="user"><?php echo ucwords($user->getUser()); ?></button>
             <div class="dropdown-content">

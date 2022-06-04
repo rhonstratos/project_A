@@ -8,7 +8,7 @@ require_once "../includes/config.php";
 
 <head>
     <?php require_once "../includes/head.php" ?>
-    <title>Home</title>
+    <title>Welcome</title>
     <style>
         head,
         body {

@@ -21,9 +21,8 @@ $inventory = new Inventory();?>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
                             <th>Quantity</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,9 +36,8 @@ $inventory = new Inventory();?>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
                             <th>Quantity</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,9 +51,8 @@ $inventory = new Inventory();?>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
                             <th>Quantity</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -194,12 +194,13 @@ class Inventory
             #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
+            $id = "$itemName|$itemPrice|$itemQuantity";
         ?>
-            <tr>
+            <tr id="<?php echo $id; ?>">
                 <td><?php echo $itemName; ?></td>
-                <td><?php echo $itemPrice; ?></td>
                 <td><?php echo $itemQuantity; ?></td>
-                <td><input type="button" value="View" onclick="location.href='#'"></td>
+                <td><button type="button" onclick="updateInventoryItem('<?php echo $id; ?>')">Update</button></td>
+                <td><button type="button" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
             </tr>
         <?php
         }

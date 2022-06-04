@@ -10,7 +10,7 @@
         </form>
     </div>
     <div class="row-end">
-        <a href="#" class="nav-item nostyle">Register</a>
+        <a href="#" class="nav-item nostyle">Register Item</a>
         <div class="dropdown fit">
             <button class="dropbtn" type="button">Admin</button>
             <div class="dropdown-content">

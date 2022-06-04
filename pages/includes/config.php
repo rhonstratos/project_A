@@ -254,7 +254,7 @@ class Inventory
         $itmNode->append($this->xml->createElement("picture", $file_name));
         $node->appendChild($itmNode);
         $this->xml->save($this->path);
-        move_uploaded_file($tmp_name, $this->path.basename($file_name));
+        move_uploaded_file($tmp_name, $this->assetsPath.$file_name);
         header("location:../views/inventory.php");
     }
 }

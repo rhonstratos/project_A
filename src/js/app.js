@@ -95,6 +95,40 @@ var modal = document.getElementById("myModal");
 var modalName = document.getElementById("itemNameModal")
 var modalPrice = document.getElementById("itemPriceModal")
 var modalQuantity = document.getElementById("itemQuantityModal")
+function updateInventoryItem(id) {
+    let str = Array.from(id.split("|"))
+    let modal = document.getElementById("UpdateInventoryModal")
+    let itemInvName = document.getElementById("itemInventoryNameModal")
+    let itemIvnPrice = document.getElementById("itemInventoryPriceModal")
+    let itemIvnQuantity = document.getElementById("itemInventoryQuantityModal")
+    itemInvName.value = str[0]
+    itemIvnPrice.value = parseFloat(str[1])
+    itemIvnQuantity.value = parseFloat(str[2])
+    modal.style.display = "block"
+}
+function updateInventoryModal() {
+    let http = new XMLHttpRequest()
+    let itemInvName = document.getElementById("itemInventoryNameModal").value
+    let itemIvnPrice = parseFloat(document.getElementById("itemInventoryPriceModal").value)
+    let itemIvnQuantity = parseFloat(document.getElementById("itemInventoryQuantityModal").value)
+    let user = document.getElementById("user").innerHTML.toLowerCase()
+    let params = "updateInventoryCart=true&user=" + user + "&itemName=" + itemInvName + "&itemPrice=" + itemIvnPrice + "&itemQuantity=" + itemIvnQuantity
+
+    if (itemIvnQuantity < 1 || itemIvnPrice < 1)
+        alert("Please enter avalid parameters and try again.")
+    else {
+        http.open("get", "../includes/config.php?" + params, true);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                document.getElementById("modal2").style.display = "block"
+            }
+        };
+        http.send();
+    }
+}
+function deleteInventoryItem(id) {
+
+}
 function purchaseCart() {
     let total = parseFloat(document.getElementById("total").innerHTML.replaceAll(/[^\d.-]/g, ''))
     let payment = parseFloat(document.getElementById("payment").value)
@@ -135,7 +169,7 @@ function addToCart() {
     let itemPrice = document.getElementById("itemPriceModal").value
     let itemQuantity = document.getElementById("itemQuantityModal").value
     let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemCategory=" + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
+    let params = "addToCart=true&user=" + user + "&itemName=" + itemName + "&itemPrice=" + itemPrice + "&itemQuantity=" + itemQuantity
 
     if (parseFloat(itemQuantity) < 1) { alert("Please enter avalid quantity and try again.") }
     else {

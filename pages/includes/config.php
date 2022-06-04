@@ -193,8 +193,9 @@ class Inventory
             #$itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
             #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $itemPrice = number_format($itemPrice, 2);
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-            $id = "$itemName|$itemPrice|$itemQuantity";
+            $id = "$itemName|$itemPrice|$itemQuantity|$targetInventory";
         ?>
             <tr id="<?php echo $id; ?>">
                 <td><?php echo $itemName; ?></td>
@@ -203,6 +204,22 @@ class Inventory
                 <td><button type="button" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
             </tr>
         <?php
+        }
+    }
+    public function updateInventoryItem($category, $itemName, $itemPrice, $itemQuantity)
+    {
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName($category)[0]->getElementsByTagName("item");
+        foreach ($node as $targetNode) {
+            $name = $targetNode->getElementsByTagName("name")[0]->nodeValue;
+            $price = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $quantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
+            if ($name == $itemName && $price == $itemPrice && $quantity == $itemQuantity) {
+                $targetNode->getElementsByTagName("name")[0]->nodeValue = $itemName;
+                $targetNode->getElementsByTagName("price")[0]->nodeValue = $itemPrice;
+                $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
+                $this->xml->save($this->path);
+            }
         }
     }
 }
@@ -403,8 +420,8 @@ class Transactions
         ?>
             <div class="fit ">
                 <h2><?php echo $date; ?></h2>
-                <h4 style="margin:0px auto;">Total: PHP <?php echo $total;?></h4>
-                <h4 style="margin-top:10px;">Payment: PHP <?php echo $payment;?></h4>
+                <h4 style="margin:0px auto;">Total: PHP <?php echo $total; ?></h4>
+                <h4 style="margin-top:10px;">Payment: PHP <?php echo $payment; ?></h4>
                 <table>
                     <thead>
                         <tr>
@@ -464,4 +481,9 @@ if (isset($_GET['updateCartItem'])) {
 if (isset($_GET['deleteCartItem'])) {
     $cart = new Cart();
     $cart->deleteCart($_GET['user'], $_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity']);
+}
+
+if (isset($_GET['updateInventoryCart'])) {
+    $inventory = new Inventory();
+    $inventory->updateInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['category']);
 }

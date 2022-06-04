@@ -101,6 +101,8 @@ function updateInventoryItem(id) {
     let itemInvName = document.getElementById("itemInventoryNameModal")
     let itemIvnPrice = document.getElementById("itemInventoryPriceModal")
     let itemIvnQuantity = document.getElementById("itemInventoryQuantityModal")
+    let updateBtn = document.getElementById("invUpdate")
+    updateBtn.setAttribute("category", str[3])
     itemInvName.value = str[0]
     itemIvnPrice.value = parseFloat(str[1])
     itemIvnQuantity.value = parseFloat(str[2])
@@ -111,8 +113,9 @@ function updateInventoryModal() {
     let itemInvName = document.getElementById("itemInventoryNameModal").value
     let itemIvnPrice = parseFloat(document.getElementById("itemInventoryPriceModal").value)
     let itemIvnQuantity = parseFloat(document.getElementById("itemInventoryQuantityModal").value)
-    let user = document.getElementById("user").innerHTML.toLowerCase()
-    let params = "updateInventoryCart=true&user=" + user + "&itemName=" + itemInvName + "&itemPrice=" + itemIvnPrice + "&itemQuantity=" + itemIvnQuantity
+    let updateBtn = document.getElementById("invUpdate")
+    let category = updateBtn.getAttribute("category")
+    let params = "updateInventoryCart=true&itemName=" + itemInvName + "&itemPrice=" + itemIvnPrice + "&itemQuantity=" + itemIvnQuantity + "&category=" + category
 
     if (itemIvnQuantity < 1 || itemIvnPrice < 1)
         alert("Please enter avalid parameters and try again.")

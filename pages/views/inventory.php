@@ -72,14 +72,14 @@ $inventory = new Inventory();?>
                 <input class="fit" type="text" name="itemInventoryNameModal" id="itemInventoryNameModal" placeholder="ItemName" readonly="readonly">
                 <input class="fit" type="number" name="itemInventoryPriceModal" id="itemInventoryPriceModal" placeholder="Price">
                 <input class="fit" type="number" name="itemInventoryQuantityModal" id="itemInventoryQuantityModal" placeholder="Quantity">
-                <button class="fit" type="button" onclick="updateInventoryModal()">Yes</button>
+                <button class="fit" type="button" id="invUpdate" onclick="updateInventoryModal()">Yes</button>
                 <button class="fit" type="button" onclick="closeAllModal()">No</button>
             </div>
         </div>
         <div id="modal2" class="modal">
             <!-- Modal content -->
             <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal(); location.href='./checkout.php';">&times;</span>
+                <span class="close" onclick="closeAllModal(); location.href='./inventory.php';">&times;</span>
                 <h2>Inventory Item Updated!</h2>
                 <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./inventory.php';">
             </div>

@@ -175,6 +175,7 @@ class Inventory
 {
     private $path = "../data/inventory.xml";
     private $xml;
+    private $assetsPath = "../assets/";
     public function __construct()
     {
         $this->xml = new LocalXML($this->path);
@@ -193,7 +194,6 @@ class Inventory
             #$itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
             #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
-            $itemPrice = number_format($itemPrice, 2);
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
             $id = "$itemName|$itemPrice|$itemQuantity|$targetInventory";
         ?>
@@ -206,7 +206,7 @@ class Inventory
         <?php
         }
     }
-    public function updateInventoryItem($itemName, $itemPrice, $itemQuantity,$category)
+    public function updateInventoryItem($itemName, $itemPrice, $itemQuantity, $category)
     {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($category)[0]->getElementsByTagName("item");
@@ -214,14 +214,15 @@ class Inventory
             $name = $targetNode->getElementsByTagName("name")[0]->nodeValue;
             if ($name == $itemName) {
                 $targetNode->getElementsByTagName("name")[0]->nodeValue = $itemName;
-                $targetNode->getElementsByTagName("price")[0]->nodeValue = number_format($itemPrice,2);
+                $targetNode->getElementsByTagName("price")[0]->nodeValue = number_format((float)$itemPrice, 2);
                 $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
                 $this->xml->save($this->path);
                 break;
             }
         }
     }
-    public function deleteInventoryItem($itemName, $itemPrice, $itemQuantity,$category){
+    public function deleteInventoryItem($itemName, $itemPrice, $itemQuantity, $category)
+    {
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($category)[0]->getElementsByTagName("item");
         foreach ($node as $targetNode) {
@@ -234,6 +235,27 @@ class Inventory
                 break;
             }
         }
+    }
+    public function registerNewItem($itmName, $itmDesc, $itmCategory, $itmPrice, $itmQuantity, $IMGFile)
+    {
+        $file_name = $IMGFile['name'];
+        $file_size = $IMGFile['size'];
+        $file_type = $IMGFile['type'];
+        $tmp_name = $IMGFile['tmp_name'];
+        $error = $IMGFile['error'];
+
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName($itmCategory)[0];
+        $itmNode = $this->xml->createElement("item");
+        $itmNode->append($this->xml->createElement("name", $itmName));
+        $itmNode->append($this->xml->createElement("description", $itmDesc));
+        $itmNode->append($this->xml->createElement("price", number_format((float)$itmPrice, 2)));
+        $itmNode->append($this->xml->createElement("quantity", $itmQuantity));
+        $itmNode->append($this->xml->createElement("picture", $file_name));
+        $node->appendChild($itmNode);
+        $this->xml->save($this->path);
+        move_uploaded_file($tmp_name, $this->path.basename($file_name));
+        header("location:../views/inventory.php");
     }
 }
 class Cart
@@ -290,9 +312,9 @@ class Cart
         ?>
             <tr id="<?php echo $id; ?>">
                 <td><?php echo $name; ?></td>
-                <td><?php echo number_format($price, 2); ?></td>
+                <td><?php echo number_format((float)$price, 2); ?></td>
                 <td><?php echo $quantity; ?></td>
-                <td><?php echo number_format($subtotal, 2); ?></td>
+                <td><?php echo number_format((float)$subtotal, 2); ?></td>
                 <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
                 <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
             </tr>
@@ -308,7 +330,7 @@ class Cart
     }
     public function getTotal()
     {
-        return number_format($this->total, 2);
+        return number_format((float)$this->total, 2);
     }
     public function updateCart($user, $itemName, $itemQuantity)
     {
@@ -504,4 +526,9 @@ if (isset($_GET['updateInventoryCart'])) {
 if (isset($_GET['deleteInventoryCart'])) {
     $inventory = new Inventory();
     $inventory->deleteInventoryItem($_GET['itemName'], $_GET['itemPrice'], $_GET['itemQuantity'], $_GET['Invcategory']);
+}
+
+if (isset($_POST['registerNewItem'])) {
+    $inventory = new Inventory();
+    $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'],$_POST['itmQuantity'], $_FILES['itmIMG']);
 }

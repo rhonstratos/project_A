@@ -104,7 +104,7 @@ function updateInventoryItem(id) {
     let updateBtn = document.getElementById("invUpdate")
     updateBtn.setAttribute("category", str[3])
     itemInvName.value = str[0]
-    itemIvnPrice.value = parseFloat(str[1])
+    itemIvnPrice.value = parseFloat(str[1].replaceAll(/[^\d.-]/g, ''))
     itemIvnQuantity.value = parseFloat(str[2])
     modal.style.display = "block"
 }

@@ -15,6 +15,90 @@
       <price>155.00</price>
       <quantity>100</quantity>
     </item>
+    <item>
+      <name>aasdawd</name>
+      <description>asdawd123123</description>
+      <price>1,233.00</price>
+      <quantity>22</quantity>
+      <picture>poggy.png</picture>
+    </item>
+    <item>
+      <name>test1</name>
+      <description>asdawd</description>
+      <price>33,123.00</price>
+      <quantity>12333</quantity>
+      <picture>woggy_cheer.png</picture>
+    </item>
+    <item>
+      <name>asdawd3333</name>
+      <description>1asda</description>
+      <price>22.00</price>
+      <quantity>333</quantity>
+      <picture>woggy_bennet.png</picture>
+    </item>
+    <item>
+      <name>zxc</name>
+      <description>adawd</description>
+      <price>33.00</price>
+      <quantity>222</quantity>
+      <picture>woggy_bricc.gif</picture>
+    </item>
+    <item>
+      <name>acccc</name>
+      <description>23</description>
+      <price>0.00</price>
+      <quantity>aaaaa</quantity>
+      <picture>woggy_blind.png</picture>
+    </item>
+    <item>
+      <name>ccccccccc</name>
+      <description>asdasda</description>
+      <price>222.00</price>
+      <quantity>333</quantity>
+      <picture>woggy_collapsed.png</picture>
+    </item>
+    <item>
+      <name>dasczxc</name>
+      <description>5asda</description>
+      <price>3,312.00</price>
+      <quantity>3333</quantity>
+      <picture>woggy_commie.png</picture>
+    </item>
+    <item>
+      <name>am,mm</name>
+      <description>aasd</description>
+      <price>55.00</price>
+      <quantity>22</quantity>
+      <picture>woggy_angry.png</picture>
+    </item>
+    <item>
+      <name>am,mm</name>
+      <description>aasd</description>
+      <price>55.00</price>
+      <quantity>22</quantity>
+      <picture />
+    </item>
+    <item>
+      <name>am,mmczxc</name>
+      <description>aasd</description>
+      <price>553.00</price>
+      <quantity>222</quantity>
+      <picture />
+    </item>
+    <item>
+      <name>am,mmczxc</name>
+      <description>aasd</description>
+      <price>553.00</price>
+      <quantity>222</quantity>
+      <picture />
+    </item>
+    <item>
+      <name>am,mmczxcccc</name>
+      <description>aasd</description>
+      <price>5,532.00</price>
+      <quantity>2223</quantity>
+      <picture>woggy_coffeeSus.png</picture>
+    </item>
   </darkChocolates>
   <milkChocolates>
     <item>

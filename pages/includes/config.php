@@ -259,9 +259,9 @@ class Cart
         ?>
             <tr id="<?php echo $id; ?>">
                 <td><?php echo $name; ?></td>
-                <td><?php echo number_format($price,2); ?></td>
+                <td><?php echo number_format($price, 2); ?></td>
                 <td><?php echo $quantity; ?></td>
-                <td><?php echo number_format($subtotal,2); ?></td>
+                <td><?php echo number_format($subtotal, 2); ?></td>
                 <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
                 <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
             </tr>
@@ -272,7 +272,7 @@ class Cart
             <tr>
                 <h2>Your cart is empty!</h2>
             </tr>
-<?php
+        <?php
         }
     }
     public function getTotal()
@@ -302,9 +302,11 @@ class Cart
             #echo $targetNode->getElementsByTagName("name")[0]->nodeValue." | ".$itemName . "<br>";
             #echo $targetNode->getElementsByTagName("price")[0]->nodeValue." | ".$itemPrice . "<br>";
             #echo $targetNode->getElementsByTagName("quantity")[0]->nodeValue." | ".$itemQuantity;
-            if($targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName &&
-            $targetNode->getElementsByTagName("price")[0]->nodeValue == $itemPrice &&
-            $targetNode->getElementsByTagName("quantity")[0]->nodeValue == $itemQuantity ){
+            if (
+                $targetNode->getElementsByTagName("name")[0]->nodeValue == $itemName &&
+                $targetNode->getElementsByTagName("price")[0]->nodeValue == $itemPrice &&
+                $targetNode->getElementsByTagName("quantity")[0]->nodeValue == $itemQuantity
+            ) {
                 $targetNode->parentNode->removeChild($targetNode);
                 $this->saveXML();
                 echo "deleted";
@@ -390,13 +392,45 @@ class Transactions
         $node->appendChild($transacNode);
         $this->xml->save($this->path);
     }
-    public function fillPurchases($user){
+    public function fillPurchases($user)
+    {
         $node = $this->findOwner($user)->getElementsByTagName("purchase");
-        foreach ($node as $targetNode){
+        foreach ($node as $targetNode) {
             $date = $targetNode->getElementsByTagName("date")[0]->nodeValue;
-            ?>
-            
-            <?php
+        ?>
+            <div class="fit">
+                <h2><?php echo $date; ?></h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($targetNode->getElementsByTagName("item") as $item) {
+                            $name = $item->getElementsByTagName("name")[0]->nodeValue;
+                            $price = $item->getElementsByTagName("price")[0]->nodeValue;
+                            $quantity = $item->getElementsByTagName("quantity")[0]->nodeValue;
+                            $subtotal = $item->getElementsByTagName("subtotal")[0]->nodeValue;
+
+                        ?>
+                            <tr>
+                                <td><?php echo $name; ?></td>
+                                <td><?php echo $price; ?></td>
+                                <td><?php echo $quantity; ?></td>
+                                <td><?php echo $subtotal; ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+<?php
         }
     }
 }

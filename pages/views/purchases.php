@@ -18,7 +18,6 @@ $transac = new Transactions();
         <h1>Purchases</h1>
         <div>
             <?php $transac->fillPurchases($_SESSION['USER']); ?>
-            
         </div>
     </div>
 </body>

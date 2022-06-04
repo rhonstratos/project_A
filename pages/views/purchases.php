@@ -16,7 +16,7 @@ $transac = new Transactions();
 <body>
     <div class="text-center">
         <h1>Purchases</h1>
-        <div>
+        <div style="flex-direction: column-reverse !important; margin-bottom: 5rem;">
             <?php $transac->fillPurchases($_SESSION['USER']); ?>
         </div>
     </div>

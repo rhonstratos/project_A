@@ -2,10 +2,8 @@
 <carts>
   <cart>
     <owner>user</owner>
-    <items>
-      
-    </items>
-  </cart>
+    
+  <items/></cart>
   <cart>
     <owner>user2</owner>
     <items>

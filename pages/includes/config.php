@@ -397,9 +397,13 @@ class Transactions
         $node = $this->findOwner($user)->getElementsByTagName("purchase");
         foreach ($node as $targetNode) {
             $date = $targetNode->getElementsByTagName("date")[0]->nodeValue;
+            $total = $targetNode->getElementsByTagName("total")[0]->nodeValue;
+            $payment = $targetNode->getElementsByTagName("payment")[0]->nodeValue;
         ?>
-            <div class="fit">
+            <div class="fit ">
                 <h2><?php echo $date; ?></h2>
+                <h4 style="margin:0px auto;">Total: PHP <?php echo $total;?></h4>
+                <h4 style="margin-top:10px;">Payment: PHP <?php echo $payment;?></h4>
                 <table>
                     <thead>
                         <tr>

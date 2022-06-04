@@ -109,7 +109,7 @@ function purchaseCart() {
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
                 alert("Payment Successful!")
-                window.location.href = "./home.php"
+                window.location.href = "./purchases.php"
             }
         };
         http.send();

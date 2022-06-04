@@ -88,8 +88,8 @@ $inventory = new Inventory();?>
             <!-- Modal content -->
             <div class="modal-content fit">
                 <span class="close" onclick="closeAllModal();">&times;</span>
-                <h2 id="deletItemName">Continue to Remove item from cart?</h2>
-                <button class="fit" id="itmDelete" type="button" onclick="deleteCheckoutModal()">Yes</button>
+                <h2 id="deletItemName">Continue to remove item from Inventory?</h2>
+                <button class="fit" id="itmDelete" type="button" onclick="deleteInventoryModal()">Yes</button>
                 <button class="fit" type="button" onclick="closeAllModal()">No</button>
             </div>
         </div>

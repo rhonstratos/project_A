@@ -5,7 +5,7 @@
       <name>Toblerone</name>
       <description>Toblerone is a Swiss chocolate bar made with honey and almond nougat.</description>
       <picture>toblerone_dark.jpg</picture>
-      <price>100.5</price>
+      <price>100.50</price>
       <quantity>25</quantity>
     </item>
     <item>
@@ -13,13 +13,6 @@
       <description>KITKAT 2 Finger is a perfect balance of delicious chocolate and light wafer with an extra crispy, extra creamy experience that is guaranteed to put a smile in your break. KITKAT 2 Finger is made of the finest cocoa with the right portion for a quick snack on-the-go.</description>
       <picture>kitkat_dark.jpg</picture>
       <price>155.00</price>
-      <quantity>100</quantity>
-    </item>
-    <item>
-      <name>Hershey’s Kisses</name>
-      <description>The perfect candy for candy buffets, anniversary parties, and weddings has arrived! Packaged in bulk sizing, KISSES Milk Chocolates with Almonds are the perfect addition to any gold spread, offering beautiful Foils and delicious taste.</description>
-      <picture>hersheys_kisses_dark.jpg</picture>
-      <price>115.00</price>
       <quantity>100</quantity>
     </item>
   </darkChocolates>
@@ -36,13 +29,6 @@
       <description>KITKAT 2 Finger is a perfect balance of delicious chocolate and light wafer with an extra crispy, extra creamy experience that is guaranteed to put a smile in your break. KITKAT 2 Finger is made of the finest cocoa with the right portion for a quick snack on-the-go.</description>
       <picture>kitkat_milk.png</picture>
       <price>155.00</price>
-      <quantity>100</quantity>
-    </item>
-    <item>
-      <name>Hershey’s Kisses</name>
-      <description>The perfect candy for candy buffets, anniversary parties, and weddings has arrived! Packaged in bulk sizing, KISSES Milk Chocolates with Almonds are the perfect addition to any gold spread, offering beautiful Foils and delicious taste.</description>
-      <picture>hersheys_kisses_milk.jpg</picture>
-      <price>115.00</price>
       <quantity>100</quantity>
     </item>
   </milkChocolates>

@@ -217,11 +217,23 @@ class Inventory
                 $targetNode->getElementsByTagName("price")[0]->nodeValue = number_format($itemPrice,2);
                 $targetNode->getElementsByTagName("quantity")[0]->nodeValue = $itemQuantity;
                 $this->xml->save($this->path);
+                break;
             }
         }
     }
     public function deleteInventoryItem($itemName, $itemPrice, $itemQuantity,$category){
-
+        $this->loadXML();
+        $node = $this->xml->getElementsByTagName($category)[0]->getElementsByTagName("item");
+        foreach ($node as $targetNode) {
+            $name = $targetNode->getElementsByTagName("name")[0]->nodeValue;
+            $price = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $quantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
+            if ($name == $itemName && $price == $itemPrice && $quantity == $itemQuantity) {
+                $targetNode->parentNode->removeChild($targetNode);
+                $this->xml->save($this->path);
+                break;
+            }
+        }
     }
 }
 class Cart

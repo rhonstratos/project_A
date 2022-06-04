@@ -130,7 +130,24 @@ function updateInventoryModal() {
     }
 }
 function deleteInventoryItem(id) {
+    let deleteBtn = document.getElementById("itmDelete")
+    deleteBtn.setAttribute("item", id + "")
+    let modal = document.getElementById("DeleteInventoryModal")
+    modal.style.display = "block"
+}
+function deleteInventoryModal() {
+    let http = new XMLHttpRequest()
+    let deleteBtn = document.getElementById("itmDelete")
+    let id = Array.from(deleteBtn.getAttribute("item").split("|"))
+    let params = "deleteInventoryCart=true&itemName=" + id[0] + "&itemPrice=" + id[1] + "&itemQuantity=" + id[2] + "&Invcategory=" + id[3]
 
+    http.open("get", "../includes/config.php?" + params, true);
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            document.getElementById("modal3").style.display = "block"
+        }
+    };
+    http.send();
 }
 function purchaseCart() {
     let total = parseFloat(document.getElementById("total").innerHTML.replaceAll(/[^\d.-]/g, ''))

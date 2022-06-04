@@ -3,12 +3,7 @@
   <cart>
     <owner>user</owner>
     <items>
-      <item>
-        <name>Hershey’s Kisses</name>
-        <price>115</price>
-        <quantity>12</quantity>
-        <subtotal>1380</subtotal>
-      </item>
+      
     </items>
   </cart>
   <cart>

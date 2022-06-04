@@ -1,4 +1,6 @@
-<?php session_start();
+<?php
+session_start();
+require_once "../includes/checkIfLoggedIn.php";
 require_once "../includes/config.php";
 $cart = new Cart() ?>
 <!DOCTYPE html>

@@ -38,11 +38,11 @@ require_once "../includes/config.php";
                     </tr>
                     <tr>
                         <th>Price</th>
-                        <td><input name="itmPrice" type="text"></td>
+                        <td><input name="itmPrice" type="number"></td>
                     </tr>
                     <tr>
                         <th>Quantity</th>
-                        <td><input name="itmQuantity" type="text"></td>
+                        <td><input name="itmQuantity" type="number"></td>
                     </tr>
                     <tr>
                         <th>Picture</th>

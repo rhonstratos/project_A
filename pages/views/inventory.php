@@ -2,7 +2,7 @@
 session_start();
 require_once "../includes/checkIfLoggedIn.php";
 require_once "../includes/config.php";
-$inventory = new Inventory();?>
+$inventory = new Inventory(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +14,18 @@ $inventory = new Inventory();?>
 <body>
     <?php require_once "../includes/navbar_inventory.php"; ?>
     <div>
+        <div class="row text-center">
+            <div class="fit pad-vertical-1">
+                <select name="category" id="category" class="mar-vertical-1 pad-horizontal-1 pad-vertical-1" onchange="showInventory(event)">
+                    <option value="" selected disabled>Show Inventory</option>
+                    <option value="dark_chocolate">Dark Chocolate</option>
+                    <option value="milk_chocolate">Milk Chocolate</option>
+                    <option value="white_chocolate">White Chocolate</option>
+                </select>
+            </div>
+        </div>
         <div class="row" style="align-items: flex-start;">
-            <div class="fit">
+            <div id="dark_chocolate" class="fit" style="display: none;">
                 <h2>Dark Chocolates</h2>
                 <table>
                     <thead>
@@ -26,11 +36,11 @@ $inventory = new Inventory();?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $inventory->loadInventory("darkChocolates");?>
+                        <?php $inventory->loadInventory("darkChocolates"); ?>
                     </tbody>
                 </table>
             </div>
-            <div class="fit">
+            <div id="milk_chocolate" class="fit" style="display: none;">
                 <h2>Milk Chocolates</h2>
                 <table>
                     <thead>
@@ -41,11 +51,11 @@ $inventory = new Inventory();?>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php $inventory->loadInventory("milkChocolates");?>
+                        <?php $inventory->loadInventory("milkChocolates"); ?>
                     </tbody>
                 </table>
             </div>
-            <div class="fit">
+            <div id="white_chocolate" class="fit" style="display: none;">
                 <h2>White Chocolates</h2>
                 <table>
                     <thead>
@@ -56,7 +66,7 @@ $inventory = new Inventory();?>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php $inventory->loadInventory("whiteChocolates");?>
+                        <?php $inventory->loadInventory("whiteChocolates"); ?>
                     </tbody>
                 </table>
             </div>

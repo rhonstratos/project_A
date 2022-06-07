@@ -272,3 +272,10 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
+function showInventory(event){
+    const id = event.target.value;
+    document.getElementById("dark_chocolate").style.display = "none"
+    document.getElementById("milk_chocolate").style.display = "none"
+    document.getElementById("white_chocolate").style.display = "none"
+    document.getElementById(id).style.display = "flex"
+}

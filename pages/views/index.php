@@ -12,7 +12,7 @@ require_once "../includes/config.php";
 </head>
 
 <body class="loginBG m-5 p-5">
-    <div class="container-fluid m-auto mt-5 py-5 w-25">
+    <div class="container-fluid m-auto mt-5 py-5 w-25 text-white">
         <?php
         if (isset($_SESSION['LOGGED_IN'])) {
             if (isset($_SESSION['USER'])) {

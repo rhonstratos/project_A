@@ -313,7 +313,7 @@ class Cart
                 <td><?php echo number_format((float)$price, 2); ?></td>
                 <td><?php echo $quantity; ?></td>
                 <td><?php echo number_format((float)$subtotal, 2); ?></td>
-                <td><button type="button" class="btn btn-outline-primary" onclick="showCheckoutModal('<?php echo $id; ?>')">Update</button></td>
+                <td><button type="button" class="btn btn-primary" onclick="showCheckoutModal('<?php echo $id; ?>')">Update</button></td>
                 <td><button type="button" class="btn btn-outline-danger" onclick="showDelete('<?php echo $id; ?>')">Cancel</button></td>
             </tr>
         <?php

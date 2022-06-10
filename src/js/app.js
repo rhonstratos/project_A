@@ -2,7 +2,7 @@ function hide(event) {
     var span = event.target.getElementsByTagName("span");
     setTimeout(function () {
         for (var element of span) {
-            element.style.visibility = "hidden";
+            element.style.display = "none";
         }
     }, 3000)
 
@@ -10,7 +10,7 @@ function hide(event) {
 function unhide(event) {
     var span = event.target.getElementsByTagName("span");
     for (var element of span) {
-        element.style.visibility = "visible";
+        element.style.display = "block";
     }
 }
 function resetBrowse() {

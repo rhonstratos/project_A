@@ -1,10 +1,10 @@
 <?php include_once "config.php";
 $user = new User(); ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark text-white" style="background-color: #332015 !important;">
     <div class="container-fluid">
         <a class="navbar-brand" href="./home.php">Willy Wonka's Chocolate Factory</a>
     </div>
-    <div class="container-fluid collapse navbar-collapse">
+    <div class="container-fluid collapse navbar-collapse" id="navbarSupportedContent">
         <div class="row"></div>
         <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">

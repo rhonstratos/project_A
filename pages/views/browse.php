@@ -1,17 +1,16 @@
-<div>
-    <h1>Browse Items</h1>
-    <div class="row text-center">
-        <div class="fit pad-vertical-1">
-            <select onchange="fillBrowseByCategory()" name="category" id="category" class="mar-vertical-1 pad-horizontal-1 pad-vertical-1 text-center">
-                <option value="" selected disabled>Filter By</option>
-                <option value="dark_chocolate">Dark Chocolate</option>
-                <option value="milk_chocolate">Milk Chocolate</option>
-                <option value="white_chocolate">White Chocolate</option>
-            </select>
-            <input type="button" value="Reset Filter" onclick="location.href='./home.php'" class="">
-        </div>
+<div class="text-center">
+    <img class="w-100 rounded-3 mb-5" style="height: 500px !important;" src="https://cdn.discordapp.com/attachments/798061933567017002/984769957982269470/Welcome_to.png" alt="...">
+    <h1 class="text-white">Browse Items</h1>
+    <div class="d-flex text-center justify-content-center align-items-center">
+        <select onchange="fillBrowseByCategory()" name="category" id="category" class="form-control w-25 me-3 text-center">
+            <option value="" selected disabled>Filter By</option>
+            <option value="dark_chocolate">Dark Chocolate</option>
+            <option value="milk_chocolate">Milk Chocolate</option>
+            <option value="white_chocolate">White Chocolate</option>
+        </select>
+        <button type="button" class="btn btn-primary" onclick="location.href='./home.php'">Reset Filter</button>
     </div>
-    <div class="grid" id="browse">
+    <div class="d-flex flex-row flex-wrap justify-content-evenly gap-5 my-5" id="browse">
         <?php
         $shop = new Shop();
         $shop->fillShop();
@@ -25,7 +24,7 @@
             <h2>Add item to cart?</h2>
             <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
             <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
-            <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity" >
+            <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
             <input class="fit" type="button" value="Yes" onclick="addToCart()">
             <button class="fit" type="button" onclick="closeAllModal();">No</button>
         </div>

@@ -132,20 +132,18 @@ class Shop
             $itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemPic = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
-            #if(){}
 
 ?>
-            <div class="item-list row fit">
-                <div class="card" id="<?php echo $itemPic;  ?>" onmouseover="unhide(event);" onmouseout="hide(event);">
-                    <div class="body">
-                        <img src="../assets/<?php echo $itemPic;  ?>" class="item-img" alt="item" width="100" height="200">
-                        <div class="pad-vertical-1">
-                            <span style="visibility: hidden;" class="text-center"><?php echo $itemName; ?></span>
-                            <span style="visibility: hidden;"><?php echo $itemDesc; ?></span>
-                            <span style="visibility: hidden;" class="text-center"><?php echo $itemPrice; ?></span>
-                        </div>
-                        <button type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
-                    </div>
+            <div class="card mx-5" style="width: 18rem;" id="<?php echo $itemPic;  ?>" onmouseover="unhide(event);" onmouseout="hide(event);">
+                <img src="../assets/<?php echo $itemPic;  ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <span style="display: none;" class="text-center h5 wordBreak"><?php echo $itemName; ?></span>
+                    <br>
+                    <span style="display: none;" class="p wordBreak"><?php echo $itemDesc; ?></span>
+                    <br>
+                    <span style="display: none;" class="text-center wordBreak">PHP <?php echo $itemPrice; ?></span>
+                    <br>
+                    <button class="btn btn-primary" type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
                 </div>
             </div>
         <?php
@@ -254,7 +252,7 @@ class Inventory
         $itmNode->append($this->xml->createElement("picture", $file_name));
         $node->appendChild($itmNode);
         $this->xml->save($this->path);
-        move_uploaded_file($tmp_name, $this->assetsPath.$file_name);
+        move_uploaded_file($tmp_name, $this->assetsPath . $file_name);
         header("location:../views/inventory.php");
     }
 }
@@ -530,5 +528,5 @@ if (isset($_GET['deleteInventoryCart'])) {
 
 if (isset($_POST['registerNewItem'])) {
     $inventory = new Inventory();
-    $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'],$_POST['itmQuantity'], $_FILES['itmIMG']);
+    $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'], $_POST['itmQuantity'], $_FILES['itmIMG']);
 }

@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group mt-2 d-flex flex-row justify-content-end gap-2">
                 <button class="btn btn-secondary" type="reset">Clear</button>
-                <button class="btn btn-primary" type="submit" name="register">Register</button>
                 <button class="btn btn-success" type="submit" name="login">Login</button>
+                <button class="btn btn-primary" type="submit" name="register">Register</button>
             </div>
         </form>
         <?php if (isset($loginFailed) && $loginFailed) { ?>

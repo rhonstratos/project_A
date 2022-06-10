@@ -198,8 +198,8 @@ class Inventory
             <tr id="<?php echo $id; ?>">
                 <td><?php echo $itemName; ?></td>
                 <td><?php echo $itemQuantity; ?></td>
-                <td><button type="button" onclick="updateInventoryItem('<?php echo $id; ?>')">Update</button></td>
-                <td><button type="button" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
+                <td><button class="btn btn-primary" type="button" onclick="updateInventoryItem('<?php echo $id; ?>')">Update</button></td>
+                <td><button class="btn btn-outline-danger" type="button" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
             </tr>
         <?php
         }

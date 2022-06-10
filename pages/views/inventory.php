@@ -13,10 +13,10 @@ $inventory = new Inventory(); ?>
 
 <body style="background-color: #a26f45 !important;">
     <?php require_once "../includes/navbar_inventory.php"; ?>
-    <div>
+    <div class="text-center m-auto">
         <div class="row text-center">
             <div class="fit pad-vertical-1">
-                <select name="category" id="category" class="mar-vertical-1 pad-horizontal-1 pad-vertical-1" onchange="showInventory(event)">
+                <select name="category" id="category" class="form-control w-25 m-auto my-5" onchange="showInventory(event)">
                     <option value="" selected disabled>Show Inventory</option>
                     <option value="dark_chocolate">Dark Chocolate</option>
                     <option value="milk_chocolate">Milk Chocolate</option>
@@ -24,10 +24,10 @@ $inventory = new Inventory(); ?>
                 </select>
             </div>
         </div>
-        <div class="row" style="align-items: flex-start;">
-            <div id="dark_chocolate" class="fit" style="display: none;">
+        <div class="container-fluid text-white" style="align-items: flex-start;">
+            <div id="dark_chocolate" class="row" style="display: none;">
                 <h2>Dark Chocolates</h2>
-                <table>
+                <table class="table w-50 mx-auto table-warning table-striped">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -40,9 +40,9 @@ $inventory = new Inventory(); ?>
                     </tbody>
                 </table>
             </div>
-            <div id="milk_chocolate" class="fit" style="display: none;">
+            <div id="milk_chocolate" class="row" style="display: none;">
                 <h2>Milk Chocolates</h2>
-                <table>
+                <table class="table w-50 mx-auto table-warning table-striped">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -55,9 +55,9 @@ $inventory = new Inventory(); ?>
                     </tbody>
                 </table>
             </div>
-            <div id="white_chocolate" class="fit" style="display: none;">
+            <div id="white_chocolate" class="row" style="display: none;">
                 <h2>White Chocolates</h2>
-                <table>
+                <table class="table w-50 mx-auto table-warning table-striped">
                     <thead>
                         <tr>
                             <th>Name</th>

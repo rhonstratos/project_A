@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login</title>
 </head>
 
-<body class="loginBG w-100 h-100">
-    <div class="container-fluid w-50 m-auto mt-5 text-white">
+<body class="loginBG w-100 h-100 p-5">
+    <div class="container-fluid w-50 m-auto mt-5 text-white p-5">
         <form class="m-auto" action="login.php" method="post" autocomplete="off">
             <h1>Login</h1>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <input autofocus class="form-control text-center" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
             <div class="form-group">

@@ -12,7 +12,7 @@ require_once "../includes/config.php";
     <title>Home</title>
 </head>
 
-<body>
+<body class="container-fluid p-0 m-0">
     <?php require_once "../includes/navbar.php";
     if (isset($_SESSION['LOGGED_IN']) && isset($_SESSION['USER'])) {
         require_once "./browse.php";

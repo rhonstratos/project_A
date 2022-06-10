@@ -175,6 +175,8 @@ function setCart(id) {
     var itemName = span[0].innerHTML
     var itemPrice = span[2].innerHTML
 
+    console.log(span)
+
     modalName.readonly = false
     modalPrice.readonly = false
     modalName.value = itemName

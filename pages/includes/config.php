@@ -141,7 +141,7 @@ class Shop
                     <br>
                     <span style="display: none;" class="p wordBreak"><?php echo $itemDesc; ?></span>
                     <br>
-                    <span style="display: none;" class="text-center wordBreak">PHP <?php echo $itemPrice; ?></span>
+                    <span style="display: none;" class="text-center wordBreak"><?php echo $itemPrice; ?></span>
                     <br>
                     <button class="btn btn-primary" type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
                 </div>
@@ -313,8 +313,8 @@ class Cart
                 <td><?php echo number_format((float)$price, 2); ?></td>
                 <td><?php echo $quantity; ?></td>
                 <td><?php echo number_format((float)$subtotal, 2); ?></td>
-                <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
-                <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
+                <td><button type="button" class="btn btn-outline-primary" onclick="showCheckoutModal('<?php echo $id; ?>')">Update</button></td>
+                <td><button type="button" class="btn btn-outline-danger" onclick="showDelete('<?php echo $id; ?>')">Cancel</button></td>
             </tr>
         <?php
             }

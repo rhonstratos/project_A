@@ -11,12 +11,12 @@ $cart = new Cart() ?>
     <title>Checkout</title>
 </head>
 
-<body>
+<body style="background-color: #a26f45 !important;">
     <?php require_once "../includes/navbar.php"; ?>
-    <div class="row" style="align-items: flex-start;">
-        <div class="fit">
+    <div class="row m-5 text-white" style="align-items: flex-start;">
+        <div class="container-fluid rounded-3 w-75 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
             <h2>Your Cart</h2>
-            <table>
+            <table class="table text-center">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -27,14 +27,17 @@ $cart = new Cart() ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $cart->fillCart($_SESSION['USER']); ?>
+                    <?php $cart->fillCart($_SESSION['USER']); 
+                    ?>
                 </tbody>
             </table>
-            <div class="pad-vertical-1 fit">
+            <div class="container-fluid navbar mt-3">
                 <h3 id="total">Total: PHP <?php echo $cart->getTotal(); ?></h3>
-                <input class="fit text-center" type="number" name="payment" id="payment" placeholder="Enter Payment">
-                <input class="fit mar-vertical-1" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
-                <input class="fit" type="button" value="Browse Again" onclick="location.href='./home.php'">
+                <div>
+                    <input class="fit text-center" type="number" name="payment" id="payment" placeholder="Enter Payment">
+                    <input class="btn btn-success" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
+                    <input class="btn btn-outline-secondary" type="button" value="Browse Again" onclick="location.href='./home.php'">
+                </div>
             </div>
         </div>
     </div>

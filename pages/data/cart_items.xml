@@ -2,7 +2,14 @@
 <carts>
   <cart>
     <owner>user</owner>
-    <items/>
+    <items>
+      <item>
+        <name>Toblerone</name>
+        <price>100.5</price>
+        <quantity>2</quantity>
+        <subtotal>201</subtotal>
+      </item>
+    </items>
   </cart>
   <cart>
     <owner>user2</owner>

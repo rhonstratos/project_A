@@ -33,28 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <?php require_once("../includes/head.php") ?>
     <title>Login</title>
-    <style>
-        head,
-        body {
-            height: 95vh;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="big-center pad-horizontal-3 pad-vertical-1 shadow-2">
-        <form action="login.php" method="post" autocomplete="off">
+<body class="loginBG w-100 h-100">
+    <div class="container-fluid w-50 m-auto mt-5 text-white">
+        <form class="m-auto" action="login.php" method="post" autocomplete="off">
             <h1>Login</h1>
-            <div class="row mar-vertical-1">
-                <input autofocus class="" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+            <div class="form-group">
+                <input autofocus class="form-control text-center" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
-            <div class="row mar-vertical-1">
-                <input class="" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+            <div class="form-group">
+                <input class="form-control text-center" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
             </div>
-            <div class="row login-buttons">
-                <button class="mar-1 pad-horizontal-1" type="reset">Clear</button>
-                <button class="mar-1 pad-horizontal-1" type="submit" name="login">Login</button>
-                <button class="mar-1 pad-horizontal-1" type="submit" name="register">Register</button>
+            <div class="form-group mt-2 d-flex flex-row justify-content-end gap-2">
+                <button class="btn btn-secondary" type="reset">Clear</button>
+                <button class="btn btn-primary" type="submit" name="register">Register</button>
+                <button class="btn btn-success" type="submit" name="login">Login</button>
             </div>
         </form>
         <?php if (isset($loginFailed) && $loginFailed) { ?>

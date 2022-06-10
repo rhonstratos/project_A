@@ -13,10 +13,10 @@ $transac = new Transactions();
 </head>
 <?php require_once "../includes/navbar.php"; ?>
 
-<body>
-    <div class="text-center">
+<body style="background-color: #a26f45 !important;">
+    <div class="text-center text-white p-5">
         <h1>Purchases</h1>
-        <div style="flex-direction: column-reverse !important; margin-bottom: 5rem;">
+        <div class="d-flex flex-column-reverse m-5 mx-auto">
             <?php $transac->fillPurchases($_SESSION['USER']); ?>
         </div>
     </div>

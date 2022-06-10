@@ -12,7 +12,7 @@ $user = new User(); ?>
                     <span id="user"><?php echo ucwords($user->getUser()); ?></span>
                 </a>
                 <ul class="dropdown-menu align-self-start" aria-labelledby="navbarDropdown">
-                    <li><a href="../includes/logout.php" class="nav-link" style="text-align: center;">Logout</a></li>
+                    <li><a href="../includes/logout.php" class="nav-link text-black" style="text-align: center;">Logout</a></li>
                 </ul>
             </li>
             <li class="nav-item"><a href="./checkout.php" class="nav-link">Checkout Cart</a></li>

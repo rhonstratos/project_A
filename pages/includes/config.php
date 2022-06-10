@@ -451,11 +451,11 @@ class Transactions
             $total = $targetNode->getElementsByTagName("total")[0]->nodeValue;
             $payment = $targetNode->getElementsByTagName("payment")[0]->nodeValue;
         ?>
-            <div class="fit ">
+            <div style="border-radius: 25px; background-color: #c8a37b !important;" class="col text-center w-50 mx-auto border border-5 border-dark m-2 p-2">
                 <h2><?php echo $date; ?></h2>
                 <h4 style="margin:0px auto;">Total: PHP <?php echo $total; ?></h4>
                 <h4 style="margin-top:10px;">Payment: PHP <?php echo $payment; ?></h4>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>

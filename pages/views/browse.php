@@ -1,5 +1,5 @@
 <div class="text-center">
-    <img class="w-100 rounded-3 mb-5" style="height: 500px !important;" src="https://cdn.discordapp.com/attachments/798061933567017002/984769957982269470/Welcome_to.png" alt="...">
+    <img class="w-100 mb-5" style="height: 500px !important;" src="https://cdn.discordapp.com/attachments/798061933567017002/984769957982269470/Welcome_to.png" alt="...">
     <h1 class="text-white">Browse Items</h1>
     <div class="d-flex text-center justify-content-center align-items-center">
         <select onchange="fillBrowseByCategory()" name="category" id="category" class="form-control w-25 me-3 text-center">

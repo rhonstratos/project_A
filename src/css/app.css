@@ -13,3 +13,8 @@
 * {
 	font-family: "Brussels City Personal Used", sans-serif !important;
 }
+.loginBG{
+	background-image: url('https://cdn.discordapp.com/attachments/798061933567017002/984770969937788948/Handshake_can_be_used_in_both_countries_in_formal_or_casual_events_or_meeting_new_people.png') !important;
+	background-position: top !important;
+	background-size: cover !important;
+}

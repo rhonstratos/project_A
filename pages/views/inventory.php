@@ -11,7 +11,7 @@ $inventory = new Inventory(); ?>
     <title>Inventory</title>
 </head>
 
-<body>
+<body style="background-color: #a26f45 !important;">
     <?php require_once "../includes/navbar_inventory.php"; ?>
     <div>
         <div class="row text-center">

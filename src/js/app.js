@@ -135,7 +135,7 @@ function setCart(id) {
     var itemName = span[0].innerHTML
     var itemPrice = span[2].innerHTML
 
-    console.log(span)
+    //console.log(span)
 
     modalName.readonly = false
     modalPrice.readonly = false
@@ -143,7 +143,7 @@ function setCart(id) {
     modalPrice.value = itemPrice
     modalName.readonly = true
     modalPrice.readonly = true
-    modal.style.display = "block"
+    //modal.style.display = "block"
 }
 function addToCart() {
     let http = new XMLHttpRequest()
@@ -158,7 +158,7 @@ function addToCart() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Item added to Card!')
             }
         };
         http.send();

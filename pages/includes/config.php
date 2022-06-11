@@ -143,7 +143,7 @@ class Shop
                     <br>
                     <span style="display: none;" class="text-center wordBreak"><?php echo $itemPrice; ?></span>
                     <br>
-                    <button class="btn btn-primary" type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Add2Cart" onclick="setCart('<?php echo $itemPic;  ?>');">Add to Cart</button>
                 </div>
             </div>
         <?php

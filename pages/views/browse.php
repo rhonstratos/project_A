@@ -8,7 +8,6 @@
             <option value="milk_chocolate">Milk Chocolate</option>
             <option value="white_chocolate">White Chocolate</option>
         </select>
-        <button type="button" class="btn btn-primary" onclick="location.href='./home.php'">Reset Filter</button>
     </div>
     <div class="d-flex flex-row flex-wrap justify-content-evenly gap-5 my-5" id="browse">
         <?php
@@ -16,25 +15,32 @@
         $shop->fillShop();
         ?>
     </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content fit">
-            <span class="close" onclick="closeAllModal();">&times;</span>
-            <h2>Add item to cart?</h2>
-            <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
-            <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
-            <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
-            <input class="fit" type="button" value="Yes" onclick="addToCart()">
-            <button class="fit" type="button" onclick="closeAllModal();">No</button>
-        </div>
-    </div>
-    <div id="modal2" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content fit">
-            <span class="close" onclick="closeAllModal();">&times;</span>
-            <h2>Item added to cart!</h2>
-            <button class="fit" type="button" onclick="closeAllModal();">Confirm</button>
+    <div class="modal fade" id="Add2Cart" tabindex="-1" aria-labelledby="Add2CartLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Add2CartLabel">Add Item to Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Item Name</span>
+                        <input class="form-control text-center" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
+                    </div>
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Price</span>
+                        <input class="form-control text-center" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
+                    </div>
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Quantity</span>
+                        <input class="form-control text-center" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" onclick="addToCart()">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,7 +1,10 @@
 <?php require_once "config.php"; ?>
 <nav class="navbar navbar-expand-lg navbar-dark text-white" style="background-color: #332015 !important;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="./">Willy Wonka's Chocolate Factory</a>
+    <div class="container-fluid mt-2">
+        <div>
+            <img class="mb-2 me-2" src="https://cdn.discordapp.com/attachments/798061933567017002/984770891177160754/Untitled_design_2.png" alt="... " height="40">
+            <a class="navbar-brand" href="./">Willy Wonka's Chocolate Factory</a>
+        </div>
     </div>
     <div class="container-fluid collapse navbar-collapse" id="navbarSupportedContent">
         <div class="row"></div>

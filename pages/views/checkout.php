@@ -27,7 +27,7 @@ $cart = new Cart() ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $cart->fillCart($_SESSION['USER']); 
+                    <?php $cart->fillCart($_SESSION['USER']);
                     ?>
                 </tbody>
             </table>
@@ -41,43 +41,48 @@ $cart = new Cart() ?>
             </div>
         </div>
     </div>
-    <div id="modals">
-        <!-- The Modal -->
-        <div id="UpdateCheckoutModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal();">&times;</span>
-                <h2>Update Item</h2>
-                <input class="fit" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
-                <input class="fit" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
-                <input class="fit" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
-                <input class="fit" type="button" value="Yes" onclick="updateCheckoutModal()">
-                <button class="fit" type="button" onclick="closeAllModal()">No</button>
+    <div class="modal fade" id="UpdateCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateCheckoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UpdateCheckoutModalLabel">Update Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Item Name</span>
+                        <input class="form-control text-center" type="text" name="itemNameModal" id="itemNameModal" placeholder="ItemName" readonly="readonly">
+                    </div>
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Price</span>
+                        <input class="form-control text-center" type="number" name="itemPriceModal" id="itemPriceModal" placeholder="Price" readonly="readonly">
+                    </div>
+                    <div class="input-group my-3">
+                        <span class="input-group-text" id="basic-addon1">Quantity</span>
+                        <input class="form-control text-center" type="number" name="itemQuantityModal" id="itemQuantityModal" placeholder="Quantity">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-success" onclick="updateCheckoutModal()">Yes</button>
+                </div>
             </div>
         </div>
-        <div id="modal2" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal(); location.href='./checkout.php';">&times;</span>
-                <h2>Cart Item Updated!</h2>
-                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php';">
-            </div>
-        </div>
-        <div id="DeleteCheckoutModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal();">&times;</span>
-                <h2 id="deletItemName">Continue to Remove item from cart?</h2>
-                <input class="fit" id="itmDelete" type="button" value="Yes" onclick="deleteCheckoutModal()">
-                <button class="fit" type="button" onclick="closeAllModal()">No</button>
-            </div>
-        </div>
-        <div id="modal3" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content fit">
-                <span class="close" onclick="closeAllModal(); location.href='./checkout.php';">&times;</span>
-                <h2>Cart Item Deleted!</h2>
-                <input class="fit" type="button" value="Okay" onclick="closeAllModal(); location.href='./checkout.php';">
+    </div>
+    <div class="modal fade" id="DeleteCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteCheckoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DeleteCheckoutModalLabel">Delete Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="deletItemName">Continue to Remove item from cart?</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" id="itmDelete" onclick="deleteCheckoutModal()">Yes</button>
+                </div>
             </div>
         </div>
     </div>

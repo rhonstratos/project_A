@@ -4,16 +4,10 @@
     <owner>user</owner>
     <items>
       <item>
-        <name>Toblerone</name>
-        <price>100.5</price>
-        <quantity>2</quantity>
-        <subtotal>201</subtotal>
-      </item>
-      <item>
         <name>KitKat</name>
         <price>155</price>
-        <quantity>3</quantity>
-        <subtotal>465</subtotal>
+        <quantity>20</quantity>
+        <subtotal>3100</subtotal>
       </item>
     </items>
   </cart>

@@ -196,7 +196,8 @@ function updateCheckoutModal() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Update Successful')
+                location.reload()
             }
         };
         http.send();
@@ -207,7 +208,7 @@ function showDelete(id) {
     document.getElementById("deletItemName").innerHTML = "Continue to Remove item [" + itemName[0] + "] from cart?"
     let deleteModal = document.getElementById("DeleteCheckoutModal")
     document.getElementById("itmDelete").onclick = function () { deleteCheckoutModal(id) }
-    deleteModal.style.display = "block"
+    //deleteModal.style.display = "block"
 }
 function deleteCheckoutModal(id) {
     let str = id.split("|")
@@ -218,7 +219,8 @@ function deleteCheckoutModal(id) {
     http.open("get", "../includes/config.php" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal3").style.display = "block"
+            alert('Cart item successfully Deleted')
+            location.reload()
         }
     };
     http.send();

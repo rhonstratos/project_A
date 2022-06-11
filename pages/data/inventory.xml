@@ -5,7 +5,7 @@
       <name>Toblerone</name>
       <description>Toblerone is a Swiss chocolate bar made with honey and almond nougat.</description>
       <picture>toblerone_dark.jpg</picture>
-      <price>100.5</price>
+      <price>100.50</price>
       <quantity>25</quantity>
     </item>
     <item>

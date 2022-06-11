@@ -27,7 +27,7 @@ function fillBrowseByCategory() {
             let obj = JSON.parse(xmlDocument)
             let json = obj.items
             let body = document.getElementById("browse")
-            body.innerHTML=''
+            body.innerHTML = ''
             for (items of json) {
                 body.innerHTML = `${body.innerHTML}
                 <div class="card mx-5" style="width: 18rem;" id="${items.picture}" onmouseover="unhide(event);" onmouseout="hide(event);">
@@ -66,7 +66,7 @@ function updateInventoryItem(id) {
     itemInvName.value = str[0]
     itemIvnPrice.value = parseFloat(str[1].replaceAll(/[^\d.-]/g, ''))
     itemIvnQuantity.value = parseFloat(str[2])
-    modal.style.display = "block"
+    //modal.style.display = "block"
 }
 function updateInventoryModal() {
     let http = new XMLHttpRequest()
@@ -83,7 +83,8 @@ function updateInventoryModal() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Inventory Item Successfully Updated')
+                location.reload()
             }
         };
         http.send();
@@ -93,7 +94,7 @@ function deleteInventoryItem(id) {
     let deleteBtn = document.getElementById("itmDelete")
     deleteBtn.setAttribute("item", id + "")
     let modal = document.getElementById("DeleteInventoryModal")
-    modal.style.display = "block"
+    //modal.style.display = "block"
 }
 function deleteInventoryModal() {
     let http = new XMLHttpRequest()
@@ -104,7 +105,8 @@ function deleteInventoryModal() {
     http.open("get", "../includes/config.php?" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal3").style.display = "block"
+            alert('Inventory Item Successfully Deleted')
+            location.reload()
         }
     };
     http.send();
@@ -236,7 +238,7 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-function showInventory(event){
+function showInventory(event) {
     const id = event.target.value;
     document.getElementById("dark_chocolate").style.display = "none"
     document.getElementById("milk_chocolate").style.display = "none"

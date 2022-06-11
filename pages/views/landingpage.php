@@ -15,11 +15,11 @@ require_once "../includes/config.php";
     </style>
 </head>
 
-<body>
-    <div class="big-center pad-horizontal-3 pad-vertical-1 shadow-2">
+<body class="loginBG m-5 p-5">
+    <div class="container-fluid m-auto mt-5 py-5 w-25 text-white">
         <h2>Avie's Chocolate Store</h2>
         <p>Please login/register to continue</p>
-        <input type="button" value="Proceed to Login or Register" onclick="location.href='./login.php';">
+        <button type="button" class="btn btn-primary" onclick="location.href='./login.php';">Proceed to Login or Register</button>
     </div>
 </body>
 

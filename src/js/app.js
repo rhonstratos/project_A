@@ -26,63 +26,23 @@ function fillBrowseByCategory() {
             let xmlDocument = http.responseText;
             let obj = JSON.parse(xmlDocument)
             let json = obj.items
+            let body = document.getElementById("browse")
+            body.innerHTML=''
             for (items of json) {
-                let div = document.createElement("div")
-                div.className = "item-list row fit"
-
-                let div1 = document.createElement("div")
-                div1.className = "card"
-                div1.id = items.picture
-                div1.onmouseover = unhide
-                div1.onmouseout = hide
-
-                let div2 = document.createElement("div")
-                div2.className = "body"
-
-                let img = document.createElement("img")
-                img.src = "../assets/" + items.picture
-                img.className = "item-img"
-                img.alt = "item"
-                img.width = 100
-                img.height = 200
-
-                let div3 = document.createElement("div")
-                div3.className = "pad-vertical-1"
-
-                let span1 = document.createElement("span")
-                span1.style.visibility = "hidden"
-                span1.id = "itemName"
-                span1.className = "text-center"
-                span1.innerHTML = items.name
-
-                let span2 = document.createElement("span")
-                span2.style.visibility = "hidden"
-                span2.id = "itemDesc"
-                span2.innerHTML = items.description
-
-                let span3 = document.createElement("span")
-                span3.style.visibility = "hidden"
-                span3.id = "itemPrice"
-                span3.className = "text-center"
-                span3.innerHTML = items.price
-
-                let button = document.createElement("button")
-                button.innerHTML = "Add to Cart"
-                button.type = "button"
-                button.addEventListener("click", function () { setCart(items.picture) }, false)
-
-                div3.appendChild(span1)
-                div3.appendChild(span2)
-                div3.appendChild(span3)
-
-                div2.appendChild(img)
-                div2.appendChild(div3)
-                div2.appendChild(button)
-
-                div1.appendChild(div2)
-                div.appendChild(div1)
-
-                document.getElementById("browse").appendChild(div)
+                body.innerHTML = `${body.innerHTML}
+                <div class="card mx-5" style="width: 18rem;" id="${items.picture}" onmouseover="unhide(event);" onmouseout="hide(event);">
+                    <img src="../assets/${items.picture}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span style="display: none;" class="text-center h5 wordBreak">${items.name}</span>
+                        <br>
+                        <span style="display: none;" class="p wordBreak">${items.description}</span>
+                        <br>
+                        <span style="display: none;" class="text-center wordBreak">${items.price}</span>
+                        <br>
+                        <button class="btn btn-primary" type="button" onclick="setCart('${items.picture}')">Add to Cart</button>
+                    </div>
+                </div>
+                `
             }
         }
     };

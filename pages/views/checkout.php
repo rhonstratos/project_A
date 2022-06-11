@@ -11,10 +11,10 @@ $cart = new Cart() ?>
     <title>Checkout</title>
 </head>
 
-<body style="background-color: #a26f45 !important;">
+<body class="loginBG text-white">
     <?php require_once "../includes/navbar.php"; ?>
     <div class="row m-5 text-white" style="align-items: flex-start;">
-        <div class="container-fluid rounded-3 w-75 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
+        <div class="container-fluid text-white rounded-3 w-75 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
             <h2>Your Cart</h2>
             <table class="table text-center">
                 <thead>
@@ -43,7 +43,7 @@ $cart = new Cart() ?>
     </div>
     <div class="modal fade" id="UpdateCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateCheckoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content text-black">
                 <div class="modal-header">
                     <h5 class="modal-title" id="UpdateCheckoutModalLabel">Update Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -71,7 +71,7 @@ $cart = new Cart() ?>
     </div>
     <div class="modal fade" id="DeleteCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteCheckoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content text-black">
                 <div class="modal-header">
                     <h5 class="modal-title" id="DeleteCheckoutModalLabel">Delete Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

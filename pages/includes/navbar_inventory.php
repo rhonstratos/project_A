@@ -11,7 +11,7 @@
                     <span id="user">Admin</span>
                 </a>
                 <ul class="dropdown-menu align-self-start" aria-labelledby="navbarDropdown">
-                    <li><a href="#" class="nav-link text-black text-center">Admin Panel</a></li>
+                    <li><a href="./" class="nav-link text-black text-center">Admin Panel</a></li>
                     <li><a href="../includes/logout.php" class="nav-link text-black" style="text-align: center;">Logout</a></li>
                 </ul>
             </li>

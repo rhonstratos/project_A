@@ -30,6 +30,7 @@ require_once "../includes/config.php";
                         <th>Category</th>
                         <td>
                             <select name="itmCategory" style="width: 100%;" class="text-center form-control">
+                                <option value="" selected disabled>Category</option>
                                 <option value="darkChocolates">Dark Chocolate</option>
                                 <option value="milkChocolates">Milk Chocolate</option>
                                 <option value="whiteChocolates">White Chocolate</option>

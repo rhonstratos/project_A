@@ -11,7 +11,7 @@ $inventory = new Inventory(); ?>
     <title>Inventory</title>
 </head>
 
-<body style="background-color: #a26f45 !important;">
+<body class="loginBG text-white">
     <?php require_once "../includes/navbar_inventory.php"; ?>
     <div class="text-center m-auto">
         <div class="row text-center">
@@ -74,7 +74,7 @@ $inventory = new Inventory(); ?>
     </div>
     <div class="modal fade" id="UpdateInventoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateInventoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content text-black">
                 <div class="modal-header">
                     <h5 class="modal-title" id="UpdateInventoryModalLabel">Update Inventory Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,7 +102,7 @@ $inventory = new Inventory(); ?>
     </div>
     <div class="modal fade" id="DeleteInventoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteInventoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content text-black">
                 <div class="modal-header">
                     <h5 class="modal-title" id="DeleteInventoryModalLabel">Update Inventory Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

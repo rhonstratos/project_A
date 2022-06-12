@@ -9,7 +9,7 @@
             <option value="white_chocolate">White Chocolate</option>
         </select>
     </div>
-    <div class="d-flex flex-row flex-wrap justify-content-evenly gap-5 my-5" id="browse">
+    <div class="d-flex flex-row text-black flex-wrap justify-content-evenly gap-5 my-5" id="browse">
         <?php
         $shop = new Shop();
         $shop->fillShop();

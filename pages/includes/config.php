@@ -183,6 +183,32 @@ class Inventory
     {
         return $this->xml->load($this->path);
     }
+    public function getInventory($category){
+        $this->loadXML();
+        $cat = "";
+        switch ($category) {
+            case "dark_chocolate":
+                $cat = "darkChocolates";
+                break;
+            case "milk_chocolate":
+                $cat = "milkChocolates";
+                break;
+            case "white_chocolate":
+                $cat = "whiteChocolates";
+                break;
+        }
+        $node = $this->xml->getElementsByTagName($cat)[0]->getElementsByTagName("item");
+        $arr = array();
+        foreach ($node as $targetNode) {
+            $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
+            $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
+            $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
+            $id = "$itemName|$itemPrice|$itemQuantity|$cat";
+            array_push($arr, array("id"=>$id,"name" => $itemName, "price" => $itemPrice, "quantity" => $itemQuantity));
+        }
+        $array = array("items" => $arr);
+        return json_encode($array);
+    }
     public function loadInventory($targetInventory)
     {
         $this->loadXML();
@@ -541,4 +567,8 @@ if (isset($_GET['deleteInventoryCart'])) {
 if (isset($_POST['registerNewItem'])) {
     $inventory = new Inventory();
     $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'], $_POST['itmQuantity'], $_FILES['itmIMG']);
+}
+if(isset($_GET['getInventory'])){
+    $inventory = new Inventory();
+    echo $inventory->getInventory($_GET['getInventory']);
 }

@@ -57,7 +57,6 @@ var modalPrice = document.getElementById("itemPriceModal")
 var modalQuantity = document.getElementById("itemQuantityModal")
 function updateInventoryItem(id) {
     let str = Array.from(id.split("|"))
-    let modal = document.getElementById("UpdateInventoryModal")
     let itemInvName = document.getElementById("itemInventoryNameModal")
     let itemIvnPrice = document.getElementById("itemInventoryPriceModal")
     let itemIvnQuantity = document.getElementById("itemInventoryQuantityModal")
@@ -66,7 +65,6 @@ function updateInventoryItem(id) {
     itemInvName.value = str[0]
     itemIvnPrice.value = parseFloat(str[1].replaceAll(/[^\d.-]/g, ''))
     itemIvnQuantity.value = parseFloat(str[2])
-    //modal.style.display = "block"
 }
 function updateInventoryModal() {
     let http = new XMLHttpRequest()
@@ -227,21 +225,47 @@ function deleteCheckoutModal(id) {
     };
     http.send();
 }
-function closeAllModal() {
-    Array.from(document.getElementsByClassName("modal")).forEach(element => {
-        element.style.display = "none"
-    })
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+function changeInventory(event) {
+    let http = new XMLHttpRequest()
+    let id = event.target.value
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            let xmlDocument = http.responseText;
+            let obj = JSON.parse(xmlDocument)
+            let json = obj.items
+            let body = document.getElementById("targetInventory")
+            let category
+            if(id == 'dark_chocolate') category = 'Dark Chocolates'
+            else if(id == 'milk_chocolate') category = 'Milk Chocolates'
+            else if(id == 'white_chocolate') category = 'White Chocolates'
+            body.innerHTML = ``
+            body.innerHTML = `
+            <h2>${category}</h2>
+                <table class="table w-50 mx-auto table-warning table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+            </table>
+            `
+            let tbody = document.getElementById('tableBody')
+            for (items of json) {
+                tbody.innerHTML = `${tbody.innerHTML}
+                <tr id="${items.id}">
+                    <td>${items.name}</td>
+                    <td>${items.quantity}</td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateInventoryModal" onclick="updateInventoryItem('${items.id}')">Update</button></td>
+                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteInventoryModal" onclick="deleteInventoryItem('${items.id}')">Delete</button></td>
+                </tr>
+                `
+            }
+        }
     }
-}
-function showInventory(event) {
-    const id = event.target.value;
-    document.getElementById("dark_chocolate").style.display = "none"
-    document.getElementById("milk_chocolate").style.display = "none"
-    document.getElementById("white_chocolate").style.display = "none"
-    document.getElementById(id).style.display = "flex"
+    http.open("GET", "../includes/config.php?getInventory=" + id, true);
+    http.send();
 }

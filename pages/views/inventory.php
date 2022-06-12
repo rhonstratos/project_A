@@ -16,7 +16,7 @@ $inventory = new Inventory(); ?>
     <div class="text-center m-auto">
         <div class="row text-center">
             <div class="fit pad-vertical-1">
-                <select name="category" id="category" class="form-control w-25 m-auto my-5" onchange="showInventory(event)">
+                <select name="category" id="category" class="form-control w-25 m-auto my-5" onchange="changeInventory(event)">
                     <option value="" selected disabled>Show Inventory</option>
                     <option value="dark_chocolate">Dark Chocolate</option>
                     <option value="milk_chocolate">Milk Chocolate</option>
@@ -25,6 +25,8 @@ $inventory = new Inventory(); ?>
             </div>
         </div>
         <div class="container-fluid text-white" style="align-items: flex-start;">
+            <div id="targetInventory" class="row">
+            </div>
             <div id="dark_chocolate" class="row" style="display: none;">
                 <h2>Dark Chocolates</h2>
                 <table class="table w-50 mx-auto table-warning table-striped">

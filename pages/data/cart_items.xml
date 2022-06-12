@@ -36,20 +36,6 @@
   <cart>
     <owner>test</owner>
     <items>
-      <item>
-        <name>Hershey’s Kisses</name>
-        <price>115</price>
-        <quantity>123</quantity>
-        <subtotal>14145</subtotal>
-      </item>
     </items>
-  </cart>
-  <cart>
-    <owner>admin</owner>
-    <items/>
-  </cart>
-  <cart>
-    <owner>admin</owner>
-    <items/>
   </cart>
 </carts>

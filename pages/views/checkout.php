@@ -14,32 +14,45 @@ $cart = new Cart() ?>
 <body class="loginBG text-white">
     <?php require_once "../includes/navbar.php"; ?>
     <div class="row m-5 text-white" style="align-items: flex-start;">
-        <div class="container-fluid text-white rounded-3 w-75 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
-            <h2>Your Cart</h2>
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th colspan="2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $cart->fillCart($_SESSION['USER']);
-                    ?>
-                </tbody>
-            </table>
-            <div class="container-fluid navbar mt-3">
-                <h3 id="total">Total: PHP <?php echo $cart->getTotal(); ?></h3>
-                <div>
-                    <input class="fit text-center" type="number" name="payment" id="payment" placeholder="Enter Payment">
-                    <input class="btn btn-success" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
-                    <input class="btn btn-outline-secondary" type="button" value="Browse Again" onclick="location.href='./home.php'">
+        <?php
+        if ($cart->checkCart($_SESSION['USER'])) {
+        ?>
+            <div class="container-fluid text-white text-center rounded-3 w-50 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
+                <h2>Your Cart is Empty!</h2>
+            </div>
+        <?php
+        } else {
+        ?>
+
+            <div class="container-fluid text-white rounded-3 w-75 border border-5 border-dark p-5 text-black" style="background-color: #c8a37b !important;">
+                <h2>Your Cart</h2>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $cart->fillCart($_SESSION['USER']);
+                        ?>
+                    </tbody>
+                </table>
+                <div class="container-fluid navbar mt-3">
+                    <h3 id="total">Total: PHP <?php echo $cart->getTotal(); ?></h3>
+                    <div>
+                        <input class="fit text-center" type="number" name="payment" id="payment" placeholder="Enter Payment">
+                        <input class="btn btn-success" type="button" value="Purchase All" id="purchase" onclick="purchaseCart()">
+                        <input class="btn btn-outline-secondary" type="button" value="Browse Again" onclick="location.href='./home.php'">
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php
+        }
+        ?>
     </div>
     <div class="modal fade" id="UpdateCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateCheckoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

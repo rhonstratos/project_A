@@ -295,6 +295,18 @@ class Cart
             }
         return NULL;
     }
+    public function checkCart($user){
+        $this->loadXML();
+        $cartNode = $this->findCheckout($user);
+        if (!is_null($cartNode)){
+            if (empty($cartNode->getElementsByTagName("item")[0])){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
     public function fillCart($user)
     {
         $this->loadXML();
@@ -383,7 +395,7 @@ class Cart
         $this->saveXML();
         $this->loadXML();
     }
-    public function purchaseCart($user, $total, $payment,)
+    public function purchaseCart($user, $total, $payment)
     {
         $this->loadXML();
         $owner = $this->findCheckout($user);

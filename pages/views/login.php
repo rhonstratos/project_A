@@ -5,7 +5,7 @@ require_once "../includes/config.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $user = new SearchUser($username,$password);
+    $user = new SearchUser($username, $password);
     if (isset($_POST['login'])) {
         #if user click login btn
         $result = $user->search();
@@ -21,9 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginFailed = true;
         }
     } else if (isset($_POST['register'])) {
-        #if user click register btn
-        $user->register();
-        header("location: ./login.php");
+        if (!empty($username) && !empty($password)) {
+            $user->register();
+            header("location: ./login.php");
+        } else {
+            $registerFailed = true;
+        }
     }
 }
 ?>
@@ -53,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <?php if (isset($loginFailed) && $loginFailed) { ?>
             <span>Login failed, please try again.</span>
+        <?php } else if (isset($registerFailed) && $registerFailed) { ?>
+            <span>Register failed, please try again.</span>
         <?php } ?>
     </div>
 </body>

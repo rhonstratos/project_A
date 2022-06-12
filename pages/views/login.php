@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="m-auto" action="login.php" method="post" autocomplete="off">
             <h1>Login</h1>
             <div class="form-group mb-1">
-                <input autofocus class="form-control text-center" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                <input required='required' autofocus class="form-control text-center" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
             <div class="form-group">
-                <input class="form-control text-center" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+                <input required='required' class="form-control text-center" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
             </div>
             <div class="form-group mt-2 d-flex flex-row justify-content-end gap-2">
                 <button class="btn btn-secondary" type="reset">Clear</button>

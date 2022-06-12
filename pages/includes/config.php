@@ -250,11 +250,11 @@ class Inventory
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($itmCategory)[0];
         $itmNode = $this->xml->createElement("item");
-        $itmNode->append($this->xml->createElement("name", $itmName));
-        $itmNode->append($this->xml->createElement("description", $itmDesc));
-        $itmNode->append($this->xml->createElement("price", number_format((float)$itmPrice, 2)));
-        $itmNode->append($this->xml->createElement("quantity", $itmQuantity));
-        $itmNode->append($this->xml->createElement("picture", $file_name));
+        $itmNode->appendChild($this->xml->createElement("name", $itmName));
+        $itmNode->appendChild($this->xml->createElement("description", $itmDesc));
+        $itmNode->appendChild($this->xml->createElement("price", number_format((float)$itmPrice, 2)));
+        $itmNode->appendChild($this->xml->createElement("quantity", $itmQuantity));
+        $itmNode->appendChild($this->xml->createElement("picture", $file_name));
         $node->appendChild($itmNode);
         $this->xml->save($this->path);
         move_uploaded_file($tmp_name, $this->assetsPath . $file_name);

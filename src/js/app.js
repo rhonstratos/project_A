@@ -2,7 +2,7 @@ function hide(event) {
     var span = event.target.getElementsByTagName("span");
     setTimeout(function () {
         for (var element of span) {
-            element.style.visibility = "hidden";
+            element.style.display = "none";
         }
     }, 3000)
 
@@ -10,7 +10,7 @@ function hide(event) {
 function unhide(event) {
     var span = event.target.getElementsByTagName("span");
     for (var element of span) {
-        element.style.visibility = "visible";
+        element.style.display = "block";
     }
 }
 function resetBrowse() {
@@ -26,63 +26,23 @@ function fillBrowseByCategory() {
             let xmlDocument = http.responseText;
             let obj = JSON.parse(xmlDocument)
             let json = obj.items
+            let body = document.getElementById("browse")
+            body.innerHTML = ''
             for (items of json) {
-                let div = document.createElement("div")
-                div.className = "item-list row fit"
-
-                let div1 = document.createElement("div")
-                div1.className = "card"
-                div1.id = items.picture
-                div1.onmouseover = unhide
-                div1.onmouseout = hide
-
-                let div2 = document.createElement("div")
-                div2.className = "body"
-
-                let img = document.createElement("img")
-                img.src = "../assets/" + items.picture
-                img.className = "item-img"
-                img.alt = "item"
-                img.width = 100
-                img.height = 200
-
-                let div3 = document.createElement("div")
-                div3.className = "pad-vertical-1"
-
-                let span1 = document.createElement("span")
-                span1.style.visibility = "hidden"
-                span1.id = "itemName"
-                span1.className = "text-center"
-                span1.innerHTML = items.name
-
-                let span2 = document.createElement("span")
-                span2.style.visibility = "hidden"
-                span2.id = "itemDesc"
-                span2.innerHTML = items.description
-
-                let span3 = document.createElement("span")
-                span3.style.visibility = "hidden"
-                span3.id = "itemPrice"
-                span3.className = "text-center"
-                span3.innerHTML = items.price
-
-                let button = document.createElement("button")
-                button.innerHTML = "Add to Cart"
-                button.type = "button"
-                button.addEventListener("click", function () { setCart(items.picture) }, false)
-
-                div3.appendChild(span1)
-                div3.appendChild(span2)
-                div3.appendChild(span3)
-
-                div2.appendChild(img)
-                div2.appendChild(div3)
-                div2.appendChild(button)
-
-                div1.appendChild(div2)
-                div.appendChild(div1)
-
-                document.getElementById("browse").appendChild(div)
+                body.innerHTML = `${body.innerHTML}
+                <div class="card mx-5" style="width: 18rem;" id="${items.picture}" onmouseover="unhide(event);" onmouseout="hide(event);">
+                    <img src="../assets/${items.picture}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span style="display: none;" class="text-center h5 wordBreak">${items.name}</span>
+                        <br>
+                        <span style="display: none;" class="p wordBreak">${items.description}</span>
+                        <br>
+                        <span style="display: none;" class="text-center wordBreak">${items.price}</span>
+                        <br>
+                        <button class="btn btn-primary" type="button" onclick="setCart('${items.picture}')">Add to Cart</button>
+                    </div>
+                </div>
+                `
             }
         }
     };
@@ -97,7 +57,6 @@ var modalPrice = document.getElementById("itemPriceModal")
 var modalQuantity = document.getElementById("itemQuantityModal")
 function updateInventoryItem(id) {
     let str = Array.from(id.split("|"))
-    let modal = document.getElementById("UpdateInventoryModal")
     let itemInvName = document.getElementById("itemInventoryNameModal")
     let itemIvnPrice = document.getElementById("itemInventoryPriceModal")
     let itemIvnQuantity = document.getElementById("itemInventoryQuantityModal")
@@ -106,7 +65,6 @@ function updateInventoryItem(id) {
     itemInvName.value = str[0]
     itemIvnPrice.value = parseFloat(str[1].replaceAll(/[^\d.-]/g, ''))
     itemIvnQuantity.value = parseFloat(str[2])
-    modal.style.display = "block"
 }
 function updateInventoryModal() {
     let http = new XMLHttpRequest()
@@ -123,7 +81,8 @@ function updateInventoryModal() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Inventory Item Successfully Updated')
+                location.reload()
             }
         };
         http.send();
@@ -133,7 +92,7 @@ function deleteInventoryItem(id) {
     let deleteBtn = document.getElementById("itmDelete")
     deleteBtn.setAttribute("item", id + "")
     let modal = document.getElementById("DeleteInventoryModal")
-    modal.style.display = "block"
+    //modal.style.display = "block"
 }
 function deleteInventoryModal() {
     let http = new XMLHttpRequest()
@@ -144,7 +103,8 @@ function deleteInventoryModal() {
     http.open("get", "../includes/config.php?" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal3").style.display = "block"
+            alert('Inventory Item Successfully Deleted')
+            location.reload()
         }
     };
     http.send();
@@ -175,13 +135,15 @@ function setCart(id) {
     var itemName = span[0].innerHTML
     var itemPrice = span[2].innerHTML
 
+    //console.log(span)
+
     modalName.readonly = false
     modalPrice.readonly = false
     modalName.value = itemName
     modalPrice.value = itemPrice
     modalName.readonly = true
     modalPrice.readonly = true
-    modal.style.display = "block"
+    //modal.style.display = "block"
 }
 function addToCart() {
     let http = new XMLHttpRequest()
@@ -196,7 +158,7 @@ function addToCart() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Item added to Card!')
             }
         };
         http.send();
@@ -234,7 +196,8 @@ function updateCheckoutModal() {
         http.open("get", "../includes/config.php?" + params, true);
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
-                document.getElementById("modal2").style.display = "block"
+                alert('Update Successful')
+                location.reload()
             }
         };
         http.send();
@@ -245,7 +208,7 @@ function showDelete(id) {
     document.getElementById("deletItemName").innerHTML = "Continue to Remove item [" + itemName[0] + "] from cart?"
     let deleteModal = document.getElementById("DeleteCheckoutModal")
     document.getElementById("itmDelete").onclick = function () { deleteCheckoutModal(id) }
-    deleteModal.style.display = "block"
+    //deleteModal.style.display = "block"
 }
 function deleteCheckoutModal(id) {
     let str = id.split("|")
@@ -256,26 +219,53 @@ function deleteCheckoutModal(id) {
     http.open("get", "../includes/config.php" + params, true);
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            document.getElementById("modal3").style.display = "block"
+            alert('Cart item successfully Deleted')
+            location.reload()
         }
     };
     http.send();
 }
-function closeAllModal() {
-    Array.from(document.getElementsByClassName("modal")).forEach(element => {
-        element.style.display = "none"
-    })
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+function changeInventory(event) {
+    let http = new XMLHttpRequest()
+    let id = event.target.value
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            let xmlDocument = http.responseText;
+            let obj = JSON.parse(xmlDocument)
+            let json = obj.items
+            let body = document.getElementById("targetInventory")
+            let category
+            if(id == 'dark_chocolate') category = 'Dark Chocolates'
+            else if(id == 'milk_chocolate') category = 'Milk Chocolates'
+            else if(id == 'white_chocolate') category = 'White Chocolates'
+            body.innerHTML = ``
+            body.innerHTML = `
+            <h2>${category}</h2>
+                <table class="table w-50 mx-auto table-warning table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+            </table>
+            `
+            let tbody = document.getElementById('tableBody')
+            for (items of json) {
+                tbody.innerHTML = `${tbody.innerHTML}
+                <tr id="${items.id}">
+                    <td>${items.name}</td>
+                    <td>${items.quantity}</td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateInventoryModal" onclick="updateInventoryItem('${items.id}')">Update</button></td>
+                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteInventoryModal" onclick="deleteInventoryItem('${items.id}')">Delete</button></td>
+                </tr>
+                `
+            }
+        }
     }
-}
-function showInventory(event){
-    const id = event.target.value;
-    document.getElementById("dark_chocolate").style.display = "none"
-    document.getElementById("milk_chocolate").style.display = "none"
-    document.getElementById("white_chocolate").style.display = "none"
-    document.getElementById(id).style.display = "flex"
+    http.open("GET", "../includes/config.php?getInventory=" + id, true);
+    http.send();
 }

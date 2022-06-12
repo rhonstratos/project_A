@@ -5,7 +5,7 @@ require_once "../includes/config.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $user = new SearchUser($username,$password);
+    $user = new SearchUser($username, $password);
     if (isset($_POST['login'])) {
         #if user click login btn
         $result = $user->search();
@@ -21,9 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginFailed = true;
         }
     } else if (isset($_POST['register'])) {
-        #if user click register btn
-        $user->register();
-        header("location: ./login.php");
+        if (!empty($username) && !empty($password)) {
+            $user->register();
+            header("location: ./login.php?registered=true");
+        } else {
+            $registerFailed = true;
+        }
     }
 }
 ?>
@@ -33,32 +36,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <?php require_once("../includes/head.php") ?>
     <title>Login</title>
-    <style>
-        head,
-        body {
-            height: 95vh;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="big-center pad-horizontal-3 pad-vertical-1 shadow-2">
-        <form action="login.php" method="post" autocomplete="off">
+<body class="loginBG w-100 h-100 p-5">
+    <div class="container-fluid w-50 m-auto mt-5 text-white p-5">
+        <form class="m-auto" action="login.php" method="post" autocomplete="off">
             <h1>Login</h1>
-            <div class="row mar-vertical-1">
-                <input autofocus class="" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+            <div class="form-group mb-1">
+                <input required='required' autofocus class="form-control text-center" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
-            <div class="row mar-vertical-1">
-                <input class="" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+            <div class="form-group">
+                <input required='required' class="form-control text-center" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
             </div>
-            <div class="row login-buttons">
-                <button class="mar-1 pad-horizontal-1" type="reset">Clear</button>
-                <button class="mar-1 pad-horizontal-1" type="submit" name="login">Login</button>
-                <button class="mar-1 pad-horizontal-1" type="submit" name="register">Register</button>
+            <div class="form-group mt-2 d-flex flex-row justify-content-end gap-2">
+                <button class="btn btn-secondary" type="reset">Clear</button>
+                <button class="btn btn-success" type="submit" name="login">Login</button>
+                <button class="btn btn-primary" type="submit" name="register">Register</button>
             </div>
         </form>
         <?php if (isset($loginFailed) && $loginFailed) { ?>
             <span>Login failed, please try again.</span>
+        <?php } else if (isset($registerFailed) && $registerFailed) { ?>
+            <span>Register failed, please try again.</span>
+        <?php } else if (isset($_GET['registered'])) { ?>
+            <span>Registered Successfully</span>
         <?php } ?>
     </div>
 </body>

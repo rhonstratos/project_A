@@ -132,20 +132,18 @@ class Shop
             $itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemPic = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
-            #if(){}
 
 ?>
-            <div class="item-list row fit">
-                <div class="card" id="<?php echo $itemPic;  ?>" onmouseover="unhide(event);" onmouseout="hide(event);">
-                    <div class="body">
-                        <img src="../assets/<?php echo $itemPic;  ?>" class="item-img" alt="item" width="100" height="200">
-                        <div class="pad-vertical-1">
-                            <span style="visibility: hidden;" class="text-center"><?php echo $itemName; ?></span>
-                            <span style="visibility: hidden;"><?php echo $itemDesc; ?></span>
-                            <span style="visibility: hidden;" class="text-center"><?php echo $itemPrice; ?></span>
-                        </div>
-                        <button type="button" onclick="setCart('<?php echo $itemPic;  ?>')">Add to Cart</button>
-                    </div>
+            <div class="card mx-5" style="width: 18rem;" id="<?php echo $itemPic;  ?>" onmouseover="unhide(event);" onmouseout="hide(event);">
+                <img src="../assets/<?php echo $itemPic;  ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <span style="display: none;" class="text-center h5 wordBreak"><?php echo $itemName; ?></span>
+                    <br>
+                    <span style="display: none;" class="p wordBreak"><?php echo $itemDesc; ?></span>
+                    <br>
+                    <span style="display: none;" class="text-center wordBreak"><?php echo $itemPrice; ?></span>
+                    <br>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Add2Cart" onclick="setCart('<?php echo $itemPic;  ?>');">Add to Cart</button>
                 </div>
             </div>
         <?php
@@ -185,26 +183,31 @@ class Inventory
     {
         return $this->xml->load($this->path);
     }
-    public function loadInventory($targetInventory)
-    {
+    public function getInventory($category){
         $this->loadXML();
-        $node = $this->xml->getElementsByTagName($targetInventory)[0]->getElementsByTagName("item");
+        $cat = "";
+        switch ($category) {
+            case "dark_chocolate":
+                $cat = "darkChocolates";
+                break;
+            case "milk_chocolate":
+                $cat = "milkChocolates";
+                break;
+            case "white_chocolate":
+                $cat = "whiteChocolates";
+                break;
+        }
+        $node = $this->xml->getElementsByTagName($cat)[0]->getElementsByTagName("item");
+        $arr = array();
         foreach ($node as $targetNode) {
             $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
-            #$itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
-            #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
             $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
             $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-            $id = "$itemName|$itemPrice|$itemQuantity|$targetInventory";
-        ?>
-            <tr id="<?php echo $id; ?>">
-                <td><?php echo $itemName; ?></td>
-                <td><?php echo $itemQuantity; ?></td>
-                <td><button type="button" onclick="updateInventoryItem('<?php echo $id; ?>')">Update</button></td>
-                <td><button type="button" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
-            </tr>
-        <?php
+            $id = "$itemName|$itemPrice|$itemQuantity|$cat";
+            array_push($arr, array("id"=>$id,"name" => $itemName, "price" => $itemPrice, "quantity" => $itemQuantity));
         }
+        $array = array("items" => $arr);
+        return json_encode($array);
     }
     public function updateInventoryItem($itemName, $itemPrice, $itemQuantity, $category)
     {
@@ -239,22 +242,22 @@ class Inventory
     public function registerNewItem($itmName, $itmDesc, $itmCategory, $itmPrice, $itmQuantity, $IMGFile)
     {
         $file_name = $IMGFile['name'];
-        $file_size = $IMGFile['size'];
-        $file_type = $IMGFile['type'];
+        #$file_size = $IMGFile['size'];
+        #$file_type = $IMGFile['type'];
         $tmp_name = $IMGFile['tmp_name'];
-        $error = $IMGFile['error'];
+        #$error = $IMGFile['error'];
 
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($itmCategory)[0];
         $itmNode = $this->xml->createElement("item");
-        $itmNode->append($this->xml->createElement("name", $itmName));
-        $itmNode->append($this->xml->createElement("description", $itmDesc));
-        $itmNode->append($this->xml->createElement("price", number_format((float)$itmPrice, 2)));
-        $itmNode->append($this->xml->createElement("quantity", $itmQuantity));
-        $itmNode->append($this->xml->createElement("picture", $file_name));
+        $itmNode->appendChild($this->xml->createElement("name", $itmName));
+        $itmNode->appendChild($this->xml->createElement("description", $itmDesc));
+        $itmNode->appendChild($this->xml->createElement("price", number_format((float)$itmPrice, 2)));
+        $itmNode->appendChild($this->xml->createElement("quantity", $itmQuantity));
+        $itmNode->appendChild($this->xml->createElement("picture", $file_name));
         $node->appendChild($itmNode);
         $this->xml->save($this->path);
-        move_uploaded_file($tmp_name, $this->assetsPath.$file_name);
+        move_uploaded_file($tmp_name, $this->assetsPath . $file_name);
         header("location:../views/inventory.php");
     }
 }
@@ -297,6 +300,18 @@ class Cart
             }
         return NULL;
     }
+    public function checkCart($user){
+        $this->loadXML();
+        $cartNode = $this->findCheckout($user);
+        if (!is_null($cartNode)){
+            if (empty($cartNode->getElementsByTagName("item")[0])){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
     public function fillCart($user)
     {
         $this->loadXML();
@@ -315,8 +330,8 @@ class Cart
                 <td><?php echo number_format((float)$price, 2); ?></td>
                 <td><?php echo $quantity; ?></td>
                 <td><?php echo number_format((float)$subtotal, 2); ?></td>
-                <td><input type="button" value="Update" onclick="showCheckoutModal('<?php echo $id; ?>')"></td>
-                <td><input type="button" value="Cancel" onclick="showDelete('<?php echo $id; ?>')"></td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateCheckoutModal" onclick="showCheckoutModal('<?php echo $id; ?>')">Update</button></td>
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteCheckoutModal" onclick="showDelete('<?php echo $id; ?>')">Delete</button></td>
             </tr>
         <?php
             }
@@ -385,7 +400,7 @@ class Cart
         $this->saveXML();
         $this->loadXML();
     }
-    public function purchaseCart($user, $total, $payment,)
+    public function purchaseCart($user, $total, $payment)
     {
         $this->loadXML();
         $owner = $this->findCheckout($user);
@@ -453,11 +468,11 @@ class Transactions
             $total = $targetNode->getElementsByTagName("total")[0]->nodeValue;
             $payment = $targetNode->getElementsByTagName("payment")[0]->nodeValue;
         ?>
-            <div class="fit ">
+            <div style="border-radius: 25px; background-color: #c8a37b !important;" class="col text-center w-50 mx-auto border border-5 border-dark m-2 p-2">
                 <h2><?php echo $date; ?></h2>
                 <h4 style="margin:0px auto;">Total: PHP <?php echo $total; ?></h4>
                 <h4 style="margin-top:10px;">Payment: PHP <?php echo $payment; ?></h4>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -530,5 +545,9 @@ if (isset($_GET['deleteInventoryCart'])) {
 
 if (isset($_POST['registerNewItem'])) {
     $inventory = new Inventory();
-    $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'],$_POST['itmQuantity'], $_FILES['itmIMG']);
+    $inventory->registerNewItem($_POST['itmName'], $_POST['itmDesc'], $_POST['itmCategory'], $_POST['itmPrice'], $_POST['itmQuantity'], $_FILES['itmIMG']);
+}
+if(isset($_GET['getInventory'])){
+    $inventory = new Inventory();
+    echo $inventory->getInventory($_GET['getInventory']);
 }

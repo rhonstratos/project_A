@@ -1,40 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <carts>
-  <cart>
-    <owner>user</owner>
-    <items/>
-  </cart>
-  <cart>
-    <owner>user2</owner>
-    <items>
-      <item>
-        <name>item2</name>
-        <price>200</price>
-        <quantity>2</quantity>
-        <subtotal>400</subtotal>
-      </item>
-    </items>
-  </cart>
-  <cart>
-    <owner>user3</owner>
-    <items>
-      <item>
-        <name>item3</name>
-        <price>200</price>
-        <quantity>2</quantity>
-        <subtotal>400</subtotal>
-      </item>
-    </items>
-  </cart>
-  <cart>
-    <owner>test</owner>
-    <items>
-      <item>
-        <name>Hershey’s Kisses</name>
-        <price>115</price>
-        <quantity>123</quantity>
-        <subtotal>14145</subtotal>
-      </item>
-    </items>
-  </cart>
+  
 </carts>

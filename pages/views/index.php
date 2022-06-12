@@ -9,16 +9,10 @@ require_once "../includes/config.php";
 <head>
     <?php require_once "../includes/head.php" ?>
     <title>Welcome</title>
-    <style>
-        head,
-        body {
-            height: 95vh;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="big-center pad-horizontal-3 pad-vertical-1 shadow-2">
+<body class="loginBG m-5 p-5">
+    <div class="container-fluid m-auto mt-5 py-5 w-25 text-white">
         <?php
         if (isset($_SESSION['LOGGED_IN'])) {
             if (isset($_SESSION['USER'])) {
@@ -27,9 +21,8 @@ require_once "../includes/config.php";
         ?>
                 <h2>Admin Panel</h2>
                 <div class="row" style="gap:10px;">
-                    <input type="button" value="Browse Shop" onclick="location.href='./home.php';">
-                    <input type="button" value="Inventory" onclick="location.href='./inventory.php';">
-                    <input type="button" value="Logout" onclick="location.href='../includes/logout.php';">
+                    <button class="btn btn-primary" type="button" onclick="location.href='./inventory.php';">Inventory</button>
+                    <button class="btn btn-primary" type="button" onclick="location.href='../includes/logout.php';">Logout</button>
                 </div>
         <?php }
         } ?>

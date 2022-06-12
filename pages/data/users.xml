@@ -5,14 +5,4 @@
     <username>admin</username>
     <password>admin</password>
   </user>
-  <user>
-    <type>user</type>
-    <username>user</username>
-    <password>user</password>
-  </user>
-  <user>
-    <type>user</type>
-    <username>test</username>
-    <password>test123</password>
-  </user>
 </users>

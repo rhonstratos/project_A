@@ -242,10 +242,10 @@ class Inventory
     public function registerNewItem($itmName, $itmDesc, $itmCategory, $itmPrice, $itmQuantity, $IMGFile)
     {
         $file_name = $IMGFile['name'];
-        $file_size = $IMGFile['size'];
-        $file_type = $IMGFile['type'];
+        #$file_size = $IMGFile['size'];
+        #$file_type = $IMGFile['type'];
         $tmp_name = $IMGFile['tmp_name'];
-        $error = $IMGFile['error'];
+        #$error = $IMGFile['error'];
 
         $this->loadXML();
         $node = $this->xml->getElementsByTagName($itmCategory)[0];

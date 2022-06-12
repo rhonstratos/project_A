@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (isset($_POST['register'])) {
         if (!empty($username) && !empty($password)) {
             $user->register();
-            header("location: ./login.php");
+            header("location: ./login.php?registered=true");
         } else {
             $registerFailed = true;
         }
@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span>Login failed, please try again.</span>
         <?php } else if (isset($registerFailed) && $registerFailed) { ?>
             <span>Register failed, please try again.</span>
+        <?php } else if (isset($_GET['registered'])) { ?>
+            <span>Registered Successfully</span>
         <?php } ?>
     </div>
 </body>

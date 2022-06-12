@@ -38,4 +38,4 @@
     <items>
     </items>
   </cart>
-</carts>
+<cart><owner>test2</owner><items/></cart></carts>

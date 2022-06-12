@@ -21,7 +21,6 @@ require_once "../includes/config.php";
         ?>
                 <h2>Admin Panel</h2>
                 <div class="row" style="gap:10px;">
-                    <button class="btn btn-primary" type="button" onclick="location.href='./home.php';">Browse Shop</button>
                     <button class="btn btn-primary" type="button" onclick="location.href='./inventory.php';">Inventory</button>
                     <button class="btn btn-primary" type="button" onclick="location.href='../includes/logout.php';">Logout</button>
                 </div>

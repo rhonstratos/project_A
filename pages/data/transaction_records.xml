@@ -94,4 +94,8 @@
     <name>admin</name>
     <purchases/>
   </owner>
+  <owner>
+    <name>test2</name>
+    <purchases/>
+  </owner>
 </purchaseHistory>

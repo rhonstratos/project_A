@@ -209,27 +209,6 @@ class Inventory
         $array = array("items" => $arr);
         return json_encode($array);
     }
-    public function loadInventory($targetInventory)
-    {
-        $this->loadXML();
-        $node = $this->xml->getElementsByTagName($targetInventory)[0]->getElementsByTagName("item");
-        foreach ($node as $targetNode) {
-            $itemName = $targetNode->getElementsByTagName("name")[0]->nodeValue;
-            #$itemDesc = $targetNode->getElementsByTagName("description")[0]->nodeValue;
-            #$itemImg = $targetNode->getElementsByTagName("picture")[0]->nodeValue;
-            $itemPrice = $targetNode->getElementsByTagName("price")[0]->nodeValue;
-            $itemQuantity = $targetNode->getElementsByTagName("quantity")[0]->nodeValue;
-            $id = "$itemName|$itemPrice|$itemQuantity|$targetInventory";
-        ?>
-            <tr id="<?php echo $id; ?>">
-                <td><?php echo $itemName; ?></td>
-                <td><?php echo $itemQuantity; ?></td>
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateInventoryModal" onclick="updateInventoryItem('<?php echo $id; ?>')">Update</button></td>
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteInventoryModal" onclick="deleteInventoryItem('<?php echo $id; ?>')">Delete</button></td>
-            </tr>
-        <?php #UpdateInventoryModal
-        }
-    }
     public function updateInventoryItem($itemName, $itemPrice, $itemQuantity, $category)
     {
         $this->loadXML();

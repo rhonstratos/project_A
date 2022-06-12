@@ -27,51 +27,6 @@ $inventory = new Inventory(); ?>
         <div class="container-fluid text-white" style="align-items: flex-start;">
             <div id="targetInventory" class="row">
             </div>
-            <div id="dark_chocolate" class="row" style="display: none;">
-                <h2>Dark Chocolates</h2>
-                <table class="table w-50 mx-auto table-warning table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th colspan="2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $inventory->loadInventory("darkChocolates"); ?>
-                    </tbody>
-                </table>
-            </div>
-            <div id="milk_chocolate" class="row" style="display: none;">
-                <h2>Milk Chocolates</h2>
-                <table class="table w-50 mx-auto table-warning table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th colspan="2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $inventory->loadInventory("milkChocolates"); ?>
-                    </tbody>
-                </table>
-            </div>
-            <div id="white_chocolate" class="row" style="display: none;">
-                <h2>White Chocolates</h2>
-                <table class="table w-50 mx-auto table-warning table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th colspan="2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $inventory->loadInventory("whiteChocolates"); ?>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
     <div class="modal fade" id="UpdateInventoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateInventoryModalLabel" aria-hidden="true">
